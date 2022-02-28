@@ -1,7 +1,7 @@
 package com.masjjim.util.security.jwt.filter;
 
-import biz.m24365.commonUtil.security.jwt.constants.SecurityConstants;
-import biz.m24365.commonUtil.security.jwt.filter.provider.JwtTokenProvider;
+import com.masjjim.util.security.jwt.constants.SecurityConstants;
+import com.masjjim.util.security.jwt.filter.provider.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

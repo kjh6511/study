@@ -1,8 +1,9 @@
 package com.masjjim.util.security.jwt.filter;
 
-import biz.m24365.commonUtil.security.domain.CustomUser;
-import biz.m24365.commonUtil.security.jwt.constants.SecurityConstants;
-import biz.m24365.commonUtil.security.jwt.filter.provider.JwtTokenProvider;
+
+import com.masjjim.util.security.domain.CustomUser;
+import com.masjjim.util.security.jwt.constants.SecurityConstants;
+import com.masjjim.util.security.jwt.filter.provider.JwtTokenProvider;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -39,8 +40,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     		throw new AuthenticationServiceException(
     		"Authentication method not supported: " + request.getMethod());
     		}  
-    	String username = request.getParameter("mbrId");
-    	String password = request.getParameter("mbrPw");
+    	String username = request.getParameter("memId");
+    	String password = request.getParameter("memPw");
 
         Authentication authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
         return authenticationManager.authenticate(authenticationToken);
@@ -52,17 +53,16 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain, Authentication authentication) {
     	//3-1.CustomUser에서 user정보 조회
         CustomUser user = ((CustomUser) authentication.getPrincipal());
-        Integer mbrNo = user.getMbrNo();
-        String mbrId = user.getMbrId();
-
+        Integer memNo = user.getMemNo();
+        String memId = user.getMemId();
         List<String> roles = user.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
         
-        //3-2. jwtTokenProvid에서 토큰 생성  //1000L*60*60*12 12시간
-        String token = jwtTokenProvider.createToken(request, mbrNo, mbrId, roles, 1000L*60*60*12);
+        //3-2. jwtTokenProvid에서 토큰 생성  //1000L*60*60*5 5시간
+        String token = jwtTokenProvider.createToken(request, memNo, memId, roles, 1000L*60*60*5);
 
         //3-3. 헤더에 정보를 넣어 토큰을 보내줌
         response.addHeader(SecurityConstants.TOKEN_HEADER, SecurityConstants.TOKEN_PREFIX + token);
