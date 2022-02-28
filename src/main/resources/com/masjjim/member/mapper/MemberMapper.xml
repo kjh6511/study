@@ -2,7 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.masjjim.member.mapper.MemberMapper">
 
-    <select id="readMemberByMemId" resultType="ResMember">
+    <insert id="createMember" useGeneratedKeys="true" keyProperty="memNo">
+        INSERT INTO T_100
+      			( mem_id
+      			, mem_pw
+      			, mem_name
+      			, mem_cell
+      			, mem_nic
+      			, mem_type
+      			, mem_email
+      			, mem_stat
+      			, mem_auth
+      			, mem_reg_dt
+      			)
+      		VALUES
+      			( #{memId}
+      			, #{memPw}
+      			, #{memName}
+      			, #{memCell}
+      			, #{memNic}
+      			, #{memType}
+      			, #{memEmail}
+      			, #{memAuth}
+      			, now()
+      			)
+    </insert>
 
+    <select id="checkMemId" resultType="int">
+   		SELECT COUNT(*) FROM T_100 WHERE mem_id = #{memId}
+   	</select>
+
+    <select id="readMemberByMemId" resultType="ResMember">
+        SELECT mem_no   AS memNo
+             , mem_id   AS memId
+             , mem_pw   AS memPw
+             , mem_auth AS memAuth
+        FROM T_100
+        WHERE mem_id    = #{memId}
+        AND   mem_stat != "00103"
     </select>
 </mapper>
