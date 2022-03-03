@@ -11,8 +11,8 @@ public class File {
     private String fileName;
     private String fileTrName;
     private String fileCode;
-    private String fileRel;
-    private String memAuth;
+    private Integer fileRel1;
+    private Integer fileRel2;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fileRegDt;
 }

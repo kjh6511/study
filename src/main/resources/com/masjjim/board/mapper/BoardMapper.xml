@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.masjjim.board.mapper.BoardMapper">
+
+    <insert id="createBoardCategory" useGeneratedKeys="true" keyProperty="borCatNo">
+        INSERT INTO T_300
+      			( bor_cat_name
+      			, bor_cat_num
+      			, bor_cat_type
+      			, bor_cat_stat
+      			, bor_cat_reg_dt
+      			)
+      		VALUES
+      			( #{borCatName}
+      			, #{borCatNum}
+      			, #{borCatType}
+      			, #{borCatStat}
+      			, now()
+      			)
+    </insert>
+
+	<insert id="createBoardMenu" useGeneratedKeys="true" keyProperty="borMenuNo">
+     INSERT INTO T_310
+   			( bor_cate_no
+   			, bor_menu_name
+   			, bor_menu_num
+   			, bor_menu_type
+   			, bor_menu_stat
+   			, bor_menu_reg_dt
+   			)
+   		VALUES
+   			( #{borCateNo}
+   			, #{borMenuName}
+   			, #{borMenuNum}
+   			, #{borMenuType}
+   			, #{borMenuStat}
+   			, now()
+   			)
+ </insert>
+
+	<insert id="createBoardMenuStore">
+     INSERT INTO T_311
+   			( bor_menu_no
+   			, sto_no
+   			)
+   		VALUES
+   			( #{borMenuNo}
+   			, #{stoNo}
+   			)
+ </insert>
+</mapper>

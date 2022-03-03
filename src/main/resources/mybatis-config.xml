@@ -11,6 +11,9 @@
 
 	<typeAliases>
 		<package name="com.masjjim.member.domain"/>
+		<package name="com.masjjim.board.domain"/>
+		<package name="com.masjjim.file.domain"/>
+		<package name="com.masjjim.store.domain"/>
 	</typeAliases>
 
 </configuration>

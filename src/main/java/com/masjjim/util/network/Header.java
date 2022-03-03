@@ -59,7 +59,7 @@ public class Header<T> {
                 ? (Header<T>) Header.builder()
                 .transactionTime(LocalDateTime.now())
                 .resultCode("OK")
-                .description("OK")
+                .description("READ DATA")
                 .data(data)
                 .build()
                 : (Header<T>) Header.builder()

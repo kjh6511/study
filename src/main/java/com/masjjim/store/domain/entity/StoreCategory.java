@@ -12,11 +12,11 @@ import java.time.LocalDateTime;
 @ToString
 public class StoreCategory {
 
-    private Integer StoCatNo;
-    private Integer StoNo;
-    private String StoCatName;
-    private Integer StoCatNum;
-    private String StoCatStat;
+    private Integer stoCatNo;
+    private Integer stoNo;
+    private String stoCatName;
+    private Integer stoCatNum;
+    private String stoCatStat;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime StoCatRegDt;
 }

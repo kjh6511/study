@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.masjjim.store.mapper.StoreMapper">
+    <insert id="createStore" useGeneratedKeys="true" keyProperty="stoNo">
+        INSERT INTO T_200
+                ( sto_name
+     			, sto_num
+     			, sto_cell
+     			, sto_addr1
+     			, sto_addr2
+     			, sto_info
+     			, sto_type
+     			, sto_stat
+     			, sto_reg_dt
+     			)
+     		VALUES
+     			( #{stoName}
+     			, #{stoNum}
+     			, #{stoCell}
+     			, #{stoAddr1}
+     			, #{stoAddr2}
+     			, #{stoInfo}
+     			, #{stoType}
+     			, #{stoStat}
+     			, now()
+     			)
+    </insert>
+
+    <insert id="createStoreCategory" useGeneratedKeys="true" keyProperty="stoCatNo">
+        INSERT INTO T_210
+                ( sto_no
+     			, sto_cat_name
+     			, sto_cat_num
+     			, sto_cat_stat
+     			, stoCatRegDt
+     			)
+     		VALUES
+     			( #{stoNo}
+     			, #{stoCatName}
+     			, #{stoCatNum}
+     			, #{stoCatStat}
+     			, now()
+     			)
+    </insert>
+
+    <insert id="createStoreMenu">
+        INSERT INTO T_211
+                ( sto_cat_no
+     			, sto_menu_num
+     			, sto_menu_name
+     			, sto_menu_info
+     			, sto_menu_price
+     			, sto_menu_stat
+     			, sto_menu_reg_dt
+     			)
+     		VALUES
+     			( #{stoCatNo}
+     			, #{stoMenuNum}
+     			, #{stoMenuName}
+     			, #{stoMenuInfo}
+     			, #{stoMenuPrice}
+     			, #{stoMenuStat}
+     			, now()
+     			)
+    </insert>
+
+    <insert id="createStoreReply" useGeneratedKeys="true" keyProperty="stoRlyNo">
+        INSERT INTO T_220
+                ( sto_no
+     			, mem_no
+     			, re_sto_rly_no
+     			, sto_rly_info
+     			, sto_rly_stat
+     			, sto_rly_reg_dt
+     			)
+     		VALUES
+     			( #{stoNo}
+     			, #{memNo}
+     			, #{reStoRlyNo}
+     			, #{stoRlyInfo}
+     			, #{stoRlyStat}
+     			, now()
+     			)
+    </insert>
+</mapper>

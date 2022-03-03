@@ -2,6 +2,7 @@ package com.masjjim.member.service;
 
 import com.masjjim.member.domain.entity.Member;
 import com.masjjim.member.domain.request.ReqRegister;
+import com.masjjim.member.domain.response.ResMember;
 import com.masjjim.member.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -36,4 +37,7 @@ public class MemberService {
         memberMapper.createMember(member);
     }
 
+    public ResMember readMember(Integer memNo) {
+        return memberMapper.readMember(memNo);
+    }
 }

@@ -23,6 +23,7 @@
       			, #{memNic}
       			, #{memType}
       			, #{memEmail}
+      			, #{memStat}
       			, #{memAuth}
       			, now()
       			)
@@ -41,4 +42,23 @@
         WHERE mem_id    = #{memId}
         AND   mem_stat != "00103"
     </select>
+
+	<select id="readMember" resultType="ResMember">
+		SELECT mem_no   AS memNo
+			 , mem_id   AS memId
+			 , mem_auth AS memAuth
+		  FROM T_100
+		  WHERE mem_no = #{memNo}
+	</select>
+
+	<insert id="createMemberStore">
+		INSERT INTO T_110
+			( memNo
+			, stoNo
+			)
+		VALUES
+			( #{memNo}
+			, #{stoNo}
+			)
+	</insert>
 </mapper>

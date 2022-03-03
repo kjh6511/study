@@ -1,4 +1,4 @@
-package com.masjjim.store.domain.entity;
+package com.masjjim.store.domain.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
@@ -10,9 +10,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-public class Store {
+public class ReqStore {
 
-    private Integer stoNo;
     private String stoName;
     private Integer stoNum;
     private String stoCell;
@@ -20,7 +19,5 @@ public class Store {
     private String stoAddr2;
     private String stoInfo;
     private String stoType;
-    private String stoStat;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime stoRegDt;
+
 }
