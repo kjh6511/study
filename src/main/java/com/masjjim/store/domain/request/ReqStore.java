@@ -20,4 +20,6 @@ public class ReqStore {
     private String stoInfo;
     private String stoType;
 
+    //분류 메뉴
+    private Integer borMenuNo;
 }

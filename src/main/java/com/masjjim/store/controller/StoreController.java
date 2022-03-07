@@ -1,6 +1,7 @@
 package com.masjjim.store.controller;
 
 import com.masjjim.member.domain.request.ReqRegister;
+import com.masjjim.store.domain.request.ReqStore;
 import com.masjjim.store.service.StoreService;
 import com.masjjim.util.network.Header;
 import com.masjjim.util.security.domain.CustomUser;
@@ -22,8 +23,8 @@ public class StoreController {
 
     @ApiOperation("생성")
     @PostMapping
-    public Header<Void> createStore(@AuthenticationPrincipal CustomUser customUser, @RequestBody ReqRegister reqRegister) throws Exception {
-        storeService.createStore(customUser.getMemNo(),reqRegister);
+    public Header<Void> createStore(@AuthenticationPrincipal CustomUser customUser, @RequestBody ReqStore reqStore) throws Exception {
+        storeService.createStore(customUser.getMemNo(),reqStore);
         return Header.CREATE();
     }
 
