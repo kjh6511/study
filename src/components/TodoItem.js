@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { MdDone, MdDelete } from 'react-icons/md';
+import { useTodoDispatch } from '../TodoContext';
 
 const Remove = styled.div`
   display: flex;
@@ -9,10 +10,10 @@ const Remove = styled.div`
   color: #dee2e6;
   font-size: 24px;
   cursor: pointer;
+  opacity: 0;
   &:hover {
     color: #ff6b6b;
   }
-  display: none;
 `;
 
 const TodoItemBlock = styled.div`
@@ -22,7 +23,7 @@ const TodoItemBlock = styled.div`
   padding-bottom: 12px;
   &:hover {
     ${Remove} {
-      display: initial;
+      opacity: 1;
     }
   }
 `;
@@ -39,7 +40,7 @@ const CheckCircle = styled.div`
   margin-right: 20px;
   cursor: pointer;
   ${props =>
-    props.done && //done이 존재한다면 css
+    props.done &&
     css`
       border: 1px solid #38d9a9;
       color: #38d9a9;
@@ -58,11 +59,16 @@ const Text = styled.div`
 `;
 
 function TodoItem({ id, done, text }) {
+  const dispatch = useTodoDispatch();
+  const onToggle = () => dispatch({ type: 'TOGGLE', id });
+  const onRemove = () => dispatch({ type: 'REMOVE', id });
   return (
     <TodoItemBlock>
-      <CheckCircle done={done}>{done && <MdDone />}</CheckCircle>
+      <CheckCircle done={done} onClick={onToggle}>
+        {done && <MdDone />}
+      </CheckCircle>
       <Text done={done}>{text}</Text>
-      <Remove>
+      <Remove onClick={onRemove}>
         <MdDelete />
       </Remove>
     </TodoItemBlock>
