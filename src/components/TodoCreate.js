@@ -62,7 +62,7 @@ const InsertForm = styled.form`
 
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
-  border-top: 1px solid #e9ecef;  
+  border-top: 1px solid #e9ecef;     
 `;
 
 const Input = styled.input`
