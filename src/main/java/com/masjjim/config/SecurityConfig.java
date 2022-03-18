@@ -26,6 +26,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.resource.PathResourceResolver;
 
 import java.util.Arrays;
 
@@ -61,6 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             http.authorizeRequests()
                     .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                     .antMatchers("/").permitAll() //모두허용
+                    .antMatchers("/front/**").permitAll() //모두허용
                     .antMatchers("/member/register/**").access("permitAll")
                     .antMatchers("/member/check/**").permitAll() //모두허용
                     .antMatchers("/**").authenticated() //권한 허용
@@ -132,10 +135,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             return source;
         }
 
-    //swagger 설정
+    //swagger, static 설정
     @Override public void configure(WebSecurity web) {
         web .ignoring()
                 .mvcMatchers("/swagger-ui.html/**", "/configuration/**", "/swagger-resources/**", "/v2/api-docs","/webjars/**", "/webjars/springfox-swagger-ui/*.{js,css}");
+        web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+        web.ignoring().antMatchers("/img/**","/css/**","/js/**","/vendor/**","/scss/**");
     }
 
 }

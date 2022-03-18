@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+ <html lang="ko"
+          xmlns:th="http://www.thymeleaf.org"
+          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <th:block th:replace="fragment/head :: headFragment" ></th:block>
+    <body class="bg-gradient-primary">
+        <th:block layout:fragment="content"></th:block>
+        <th:block th:replace="fragment/login_footer :: loginFooterFragment" ></th:block>
+    </body>
+</html>

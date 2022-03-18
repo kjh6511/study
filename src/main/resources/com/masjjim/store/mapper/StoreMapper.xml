@@ -83,5 +83,17 @@
      			)
     </insert>
 
-
+	<select id="readStore" resultType="ResStore">
+		SELECT sto_no
+			 , sto_name
+			 , stoNum
+			 , stoCell
+			 , stoAddr1
+			 , stoAddr2
+			 , stoInfo
+			 , stoType
+			 , stoTypeName
+		FROM
+		WHERE
+	</select>
 </mapper>
