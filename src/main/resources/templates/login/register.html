@@ -19,39 +19,46 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="user">
+                            <form class="register" id="registerForm">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="First Name">
+                                        <input type="text" class="form-control form-control-user" id="memId" name="memId"
+                                            placeholder="ID">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Last Name">
+                                        <input type="password" class="form-control form-control-user" id="memPw" name="memPw"
+                                            placeholder="Password">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                    <input type="email" class="form-control form-control-user" id="memEmail" name="memEmail"
                                         placeholder="Email Address">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="memCell" name="memCell"
+                                        placeholder="Phone number">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
+                                        <input type="text" class="form-control form-control-user"  name="memName"
+                                            id="memName" placeholder="name">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password">
+                                        <input type="text" class="form-control form-control-user"  name="memNic"
+                                            id="memNic" placeholder="닉네임">
                                     </div>
                                 </div>
-                                <a href="login" class="btn btn-primary btn-user btn-block">
+                                <div style="margin-bottom:10px; width:120px;">
+                                    <select class="form-control" id="memType" name="memType">
+                                        <option value="002001" >일반회원</option>
+                                        <option value="002002" >사업자회원</option>
+                                    </select>
+                                </div>
+                                <a id="registerBtn" class="btn btn-primary btn-user btn-block">
                                     Register Account
                                 </a>
                             </form>
                             <hr>
-                            <div class="text-center">
-                                <a class="small" href="forgot-password.html">Forgot Password?</a>
-                            </div>
                             <div class="text-center">
                                 <a class="small" href="login">Already have an account? Login!</a>
                             </div>
@@ -60,8 +67,7 @@
                 </div>
             </div>
         </div>
-
     </div>
+ <script th:src="@{/js/register.js}"></script>
 </th:block>
-
 </html>

@@ -3,25 +3,19 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
+    <th:block th:replace="fragment/head :: headFragment('menu')"></th:block>
 
-<th:block th:replace="fragment/head :: headFragment"></th:block>
-<body id="page-top">
-
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-        <th:block th:replace="fragment/header :: headerFragment"></th:block>
+    <th:block th:replace="fragment/header :: headerFragment"></th:block>
 
 
-        <th:block layout:fragment="content"></th:block>
+    <th:block layout:fragment="content"></th:block>
 
 
-        <th:block th:replace="fragment/footer :: footerFragment"></th:block>
-    </div>
-    <!-- End of Content Wrapper -->
+    <th:block th:replace="fragment/footer :: footerFragment"></th:block>
 
-    </div>
-    <!-- End of Page Wrapper -->
-        <th:block th:replace="fragment/modal :: modalFragment"></th:block>
-</body>
+    <th:block th:replace="fragment/modal :: modalFragment"></th:block>
 
+    <th:block layout:fragment="script"></th:block>
+
+    </body>
 </html>

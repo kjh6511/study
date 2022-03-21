@@ -26,14 +26,14 @@
                                     <form class="user">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
-                                                   id="exampleInputEmail" aria-describedby="emailHelp"
+                                                   id="memId" aria-describedby="emailHelp"
                                                    placeholder="ID">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                   id="exampleInputPassword" placeholder="Password">
+                                                   id="memPw" placeholder="Password">
                                         </div>
-                                        <a href="main" class="btn btn-primary btn-user btn-block">
+                                        <a class="btn btn-primary btn-user btn-block" id="loginBtn">
                                             Login
                                         </a>
                                     </form>
@@ -55,6 +55,7 @@
         </div>
 
     </div>
+    <script th:src="@{/js/login.js}"></script>
 </th:block>
 
 </html>
