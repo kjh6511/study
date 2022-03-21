@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko"
           xmlns:th="http://www.thymeleaf.org">
-    <th:block th:fragment="headFragment(title)">
+    <th:block th:fragment="headFragment">
         <head>
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,7 @@
             <meta name="description" content="">
             <meta name="author" content="">
 
-            <title th:text="${title}">Spring</title>
+            <title th:text="${menu}">PROJECT</title>
 
             <!-- Custom fonts for this template-->
             <link rel="stylesheet" type="text/css" th:href="@{/vendor/fontawesome-free/css/all.min.css}"/>
