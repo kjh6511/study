@@ -30,4 +30,10 @@ public class frontController {
         model.addAttribute("menu","Map");
         return "map/map";
     }
+
+    @GetMapping("/board-setting")
+    public String boardSetting(Model model){
+        model.addAttribute("menu","게시판 설정");
+        return "setting/board-setting";
+    }
 }

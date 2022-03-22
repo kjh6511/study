@@ -26,51 +26,56 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                전체메뉴
-            </div>
-
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+                    <span>지역별</span>
                 </a>
                 <div id="collapseTwo" class="collapse" th:classappend="${menu eq 'Map'} ? 'show' : ''"
                      aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
                         <a class="collapse-item" href="map" th:classappend="${menu eq 'Map'} ? 'active' : ''" >map</a>
                         <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
                 </div>
             </li>
 
+            <li class="nav-item">
+                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBoard"
+                    aria-expanded="true" aria-controls="collapseBoard">
+                     <span>게시판</span>
+                 </a>
+                 <div id="collapseBoard" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                     <div class="bg-white py-2 collapse-inner rounded">
+                         <a class="collapse-item" href="cards.html">내정보</a>
+                     </div>
+                 </div>
+             </li>
+
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="map" data-toggle="collapse" data-target="#collapseUtilities"
-                   aria-expanded="true" aria-controls="collapseUtilities">
-                    <span>map</span>
+                <a class="nav-link collapsed" href="map" th:classappend="${menu eq 'Map'} ? 'active' : ''">
+                    <span>Map</span>
                 </a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
-
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <span>설정</span>
                 </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"
+                     th:classappend="${menu eq '게시판 설정'} ? 'show' : ''">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="cards.html">내정보</a>
+                        <a class="collapse-item" href="board-setting" th:classappend="${menu eq '게시판 설정'} ? 'active' : ''">게시판 설정</a>
+                    </div>
+                </div>
             </li>
 
             <!-- Divider -->

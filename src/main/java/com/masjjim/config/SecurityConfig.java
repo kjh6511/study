@@ -66,6 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                     .antMatchers("/front/**").permitAll() //모두허용
                     .antMatchers("/member/register/**").access("permitAll")
                     .antMatchers("/member/check/**").permitAll() //모두허용
+                    .antMatchers("/board/**").permitAll() //모두허용
                     .antMatchers("/**").authenticated() //권한 허용
                     .anyRequest().authenticated();
 
