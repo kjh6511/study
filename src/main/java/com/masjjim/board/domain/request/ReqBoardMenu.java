@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class ReqBoardMenu {
 
-    private Integer borCateNo;
+    private Integer borCatNo;
     private String borMenuName;
     private String borMenuNum;
     private String borMenuStat;

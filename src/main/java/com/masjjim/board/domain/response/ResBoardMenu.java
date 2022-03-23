@@ -1,4 +1,4 @@
-package com.masjjim.board.domain.entity;
+package com.masjjim.board.domain.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-public class BoardMenu {
+public class ResBoardMenu {
 
     private Integer borMenuNo;
     private Integer borCatNo;
@@ -20,4 +20,5 @@ public class BoardMenu {
     private String borMenuStat;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime borMenuRegDt;
+
 }

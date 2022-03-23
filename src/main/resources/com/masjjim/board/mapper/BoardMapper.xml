@@ -21,7 +21,7 @@
 
 	<insert id="createBoardMenu" useGeneratedKeys="true" keyProperty="borMenuNo">
      INSERT INTO T_310
-   			( bor_cate_no
+   			( bor_cat_no
    			, bor_menu_name
    			, bor_menu_num
    			, bor_menu_type
@@ -29,7 +29,7 @@
    			, bor_menu_reg_dt
    			)
    		VALUES
-   			( #{borCateNo}
+   			( #{borCatNo}
    			, #{borMenuName}
    			, #{borMenuNum}
    			, #{borMenuType}
@@ -48,4 +48,49 @@
    			, #{stoNo}
    			)
  </insert>
+	<select id="readBoardMenuList" resultType="ResBoardMenu">
+		SELECT bor_cat_no     AS borCatNo
+		   	 , bor_menu_name   AS borMenuName
+		   	 , bor_menu_num    AS borMenuNum
+		   	 , bor_menu_type   AS borMenuType
+		   	 , bor_menu_stat   AS borMenuStat
+		   	 , bor_menu_reg_dt AS borMenuRegDt
+		FROM T_310
+		WHERE bor_cat_no = #{bor_cat_no}
+	</select>
+
+	<resultMap id="BoardCategoryMap" type="ResBoardCategory">
+		 <result property="borCatNo" column="borCateNo"/>
+		 <result property="borCatName" column="bor_cat_name"/>
+		 <result property="borCatNum" column="bor_cat_num"/>
+		 <result property="borCatType" column="bor_cat_type"/>
+		 <result property="borCatRegDt" column="bor_cat_reg_dt"/>
+		 <collection property="resBoardMenuList" resultMap="BoardMenuMap">
+		 </collection>
+ 	</resultMap>
+	<resultMap id="BoardMenuMap" type="ResBoardMenu" >
+     <result property="borMenuNo" column="borMenuNo"/>
+     <result property="borCatNo" column="borCatNo"/>
+     <result property="borMenuNum" column="borMenuNum"/>
+     <result property="atndDt" column="atnd_dt"/>
+     <result property="atndDt" column="atnd_dt"/>
+     <result property="atndDt" column="atnd_dt"/>
+     <result property="atndDt" column="atnd_dt"/>
+ </resultMap>
+	<select id="readBoardCategoryList" resultMap="BoardCategoryMap">
+		SELECT category.bor_cat_no AS borCatNo
+			 , category.bor_menu_name
+			 , category.bor_cat_num
+			 , category.bor_cat_type
+			 , category.bor_cat_stat
+			 , category.bor_cat_reg_dt
+			 , menu.bor_cat_no
+			 , menu.bor_menu_name
+		   	 , menu.bor_menu_num
+		   	 , menu.bor_menu_type
+		   	 , menu.bor_menu_stat
+		   	 , menu.bor_menu_reg_dt
+		FROM T_300 category
+		LEFT OUTER JOIN T_310 menu ON menu.bor_menu_name = category.bor_menu_name
+	</select>
 </mapper>

@@ -1,4 +1,18 @@
-            $(document).ready(function() {});
+            $(document).ready(function() {
+                	    		$.ajax({
+                        			type : "get",
+                        			url : "/board/menu",
+                        			data : formData,
+                        			contentType: 'application/json; charset=utf-8',
+                        			success: function(data, textStatus, request){
+                                    location.reload();
+                        		   },
+                        		   error: function (request, textStatus, errorThrown) {
+                        		        alert("error");
+                        		   }
+                        		});
+
+            });
 
         $('.icon-hover').hover(function(){
             $(this).css('color','#5bc0de');
@@ -7,7 +21,7 @@
         });
 
    function createMenuBtn(type){
-        var borCateNo = type;
+        var borCatNo = type;
         var borMenuNum;
         var borMenuName;
         var borMenuStat;
@@ -19,7 +33,7 @@
 
         };
                 var formData = JSON.stringify({
-                               "borCateNo":borCateNo,
+                               "borCatNo":borCatNo,
                                "borMenuNum":borMenuNum,
                                "borMenuName":borMenuName,
                                "borMenuStat":borMenuStat});
