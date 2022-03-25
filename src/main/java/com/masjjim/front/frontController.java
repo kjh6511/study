@@ -3,7 +3,10 @@ package com.masjjim.front;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/front")
@@ -29,6 +32,15 @@ public class frontController {
     public String map(Model model){
         model.addAttribute("menu","Map");
         return "map/map";
+    }
+
+    @GetMapping("/board")
+    public String board(Model model, HttpServletRequest request){
+        String borCatNo = request.getParameter("borCatNo");
+        String borMenuNo = request.getParameter("borMenuNo");
+        model.addAttribute("borCatNo",borCatNo);
+        model.addAttribute("borMenuNo",borMenuNo);
+        return "board/board";
     }
 
     @GetMapping("/board-setting")

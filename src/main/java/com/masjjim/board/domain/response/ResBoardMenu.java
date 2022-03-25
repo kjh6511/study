@@ -18,7 +18,7 @@ public class ResBoardMenu {
     private String borMenuNum;
     private String borMenuType;
     private String borMenuStat;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime borMenuRegDt;
 
 }

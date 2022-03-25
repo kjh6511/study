@@ -18,7 +18,7 @@ public class ResBoardCategory {
     private String borCatNum;
     private String borCatType;
     private String borCatStat;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime borCatRegDt;
 
     private List<ResBoardMenu> resBoardMenuList;

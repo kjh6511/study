@@ -18,7 +18,7 @@ public class BoardService {
 
     public void createBoardMenu(ReqBoardMenu reqBoardMenu)throws Exception{
         BoardMenu boardMenu = new BoardMenu();
-        boardMenu.setborCatNo(reqBoardMenu.getborCatNo());
+        boardMenu.setBorCatNo(reqBoardMenu.getBorCatNo());
         boardMenu.setBorMenuName(reqBoardMenu.getBorMenuName());
         boardMenu.setBorMenuStat(reqBoardMenu.getBorMenuStat());
         boardMenu.setBorMenuType("003003");

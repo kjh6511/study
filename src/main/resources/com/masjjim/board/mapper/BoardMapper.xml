@@ -60,30 +60,32 @@
 	</select>
 
 	<resultMap id="BoardCategoryMap" type="ResBoardCategory">
-		 <result property="borCatNo" column="borCateNo"/>
+		 <result property="borCatNo" column="borCatNo"/>
 		 <result property="borCatName" column="bor_cat_name"/>
 		 <result property="borCatNum" column="bor_cat_num"/>
 		 <result property="borCatType" column="bor_cat_type"/>
+		 <result property="borCatStat" column="bor_cat_stat"/>
 		 <result property="borCatRegDt" column="bor_cat_reg_dt"/>
 		 <collection property="resBoardMenuList" resultMap="BoardMenuMap">
 		 </collection>
  	</resultMap>
 	<resultMap id="BoardMenuMap" type="ResBoardMenu" >
-     <result property="borMenuNo" column="borMenuNo"/>
-     <result property="borCatNo" column="borCatNo"/>
-     <result property="borMenuNum" column="borMenuNum"/>
-     <result property="atndDt" column="atnd_dt"/>
-     <result property="atndDt" column="atnd_dt"/>
-     <result property="atndDt" column="atnd_dt"/>
-     <result property="atndDt" column="atnd_dt"/>
- </resultMap>
+		 <result property="borMenuNo" column="bor_menu_no"/>
+		 <result property="borCatNo" column="bor_cat_no"/>
+		 <result property="borMenuName" column="bor_menu_name"/>
+		 <result property="borMenuNum" column="bor_menu_num"/>
+		 <result property="borMenuType" column="bor_menu_type"/>
+		 <result property="borMenuStat" column="bor_menu_stat"/>
+		 <result property="borMenuRegDt" column="bor_menu_reg_dt"/>
+	</resultMap>
 	<select id="readBoardCategoryList" resultMap="BoardCategoryMap">
 		SELECT category.bor_cat_no AS borCatNo
-			 , category.bor_menu_name
+			 , category.bor_cat_name
 			 , category.bor_cat_num
 			 , category.bor_cat_type
 			 , category.bor_cat_stat
 			 , category.bor_cat_reg_dt
+			 , menu.bor_menu_no
 			 , menu.bor_cat_no
 			 , menu.bor_menu_name
 		   	 , menu.bor_menu_num
@@ -91,6 +93,7 @@
 		   	 , menu.bor_menu_stat
 		   	 , menu.bor_menu_reg_dt
 		FROM T_300 category
-		LEFT OUTER JOIN T_310 menu ON menu.bor_menu_name = category.bor_menu_name
+		LEFT OUTER JOIN T_310 menu ON menu.bor_cat_no = category.bor_cat_no
+		ORDER BY category.bor_cat_num, menu.bor_menu_num
 	</select>
 </mapper>

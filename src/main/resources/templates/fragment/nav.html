@@ -27,38 +27,7 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                   aria-expanded="true" aria-controls="collapseTwo">
-                    <span>지역별</span>
-                </a>
-                <div id="collapseTwo" class="collapse" th:classappend="${menu eq 'Map'} ? 'show' : ''"
-                     aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="map" th:classappend="${menu eq 'Map'} ? 'active' : ''" >map</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBoard"
-                    aria-expanded="true" aria-controls="collapseBoard">
-                     <span>게시판</span>
-                 </a>
-                 <div id="collapseBoard" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                     <div class="bg-white py-2 collapse-inner rounded">
-                         <a class="collapse-item" href="cards.html">내정보</a>
-                     </div>
-                 </div>
-             </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="map" th:classappend="${menu eq 'Map'} ? 'active' : ''">
-                    <span>Map</span>
-                </a>
-            </li>
+            <div id= "navBoardCategory"></div>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
