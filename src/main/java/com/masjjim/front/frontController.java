@@ -34,10 +34,19 @@ public class frontController {
         return "map/map";
     }
 
+    @GetMapping("/board-create")
+    public String createBoard(Model model, HttpServletRequest request){
+        Integer borCatNo = Integer.valueOf(request.getParameter("borCatNo"));
+        Integer borMenuNo = Integer.valueOf(request.getParameter("borMenuNo"));
+        model.addAttribute("borCatNo",borCatNo);
+        model.addAttribute("borMenuNo",borMenuNo);
+        return "board/board-create";
+    }
+
     @GetMapping("/board")
     public String board(Model model, HttpServletRequest request){
-        String borCatNo = request.getParameter("borCatNo");
-        String borMenuNo = request.getParameter("borMenuNo");
+        Integer borCatNo = Integer.valueOf(request.getParameter("borCatNo"));
+        Integer borMenuNo = Integer.valueOf(request.getParameter("borMenuNo"));
         model.addAttribute("borCatNo",borCatNo);
         model.addAttribute("borMenuNo",borMenuNo);
         return "board/board";

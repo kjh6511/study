@@ -8,12 +8,13 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="card shadow mb-4" style="height:78vh;">
-                <div class="card-header py-3 border-left-info">
+                <div class="border-left-info card-header py-3 d-flex justify-content-between">
                     <h1 class="h3 mb-0 text-gray-800" id="boardTitle"></h1>
+                    <button type="button" class="btn btn-info" th:onclick="location.href='board-create?borCatNo=[[${borCatNo}]]&borMenuNo=[[${borMenuNo}]]';">등록</button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered text-center" id="boardTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered text-center" id="boardTable" >
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">
