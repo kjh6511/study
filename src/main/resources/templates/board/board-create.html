@@ -8,15 +8,85 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="card shadow mb-4" style="height:78vh;">
-                <div class="border-left-info card-header py-3">
+                <div class="border-left-info card-header py-3 d-flex">
                     <h1 class="h3 mb-0 text-gray-800" id="boardTitle"></h1>
+                    <h1 class="h3 mb-0 text-gray-800">&nbsp;- 등록</h1>
                 </div>
                 <div class="card-body">
+                    <div class="inputForm">
+                        <form id="createBoardForm">
+                            <div class="form-group row">
+                                <div class="col-sm-3 mb-3 mb-sm-0">
+                                    <div>이름</div>
+                                    <input type="text" class="form-control form-control-user" id="stoName"
+                                           name="stoName">
+                                </div>
+                                <div class="col-sm-3">
+                                    <div>전화번호</div>
+                                    <input type="number" class="form-control form-control-user" id="stoNum"
+                                           name="stoNum">
+                                </div>
+                                <div class="col-sm-3" style="margin-bottom:10px; width:120px;">
+                                    <div>타입</div>
+                                    <select class="form-control" id="stoType" name="stoType">
+                                        <option value="002001">일반회원</option>
+                                        <option value="002002">사업자회원</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3" style="margin-bottom:10px; width:120px;">
+                                    <div>활성</div>
+                                    <select class="form-control" id="stoStat" name="stoStat">
+                                        <option value="002001">활성화</option>
+                                        <option value="002002">비활성화</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="d-flex justify-content-between" style="margin-bottom:5px;">
+                                    <div>주소</div>
+                                    <button class="btn btn-outline-info btn-sm">위치선택</button>
+                                </div>
+                                <input type="email" class="form-control form-control-user" id="getAddr"
+                                       placeholder="자동입력">
+                                <input type="hidden" id="stoAddr1" name="stoAddr1"/>
+                                <input type="hidden" id="stoAddr2" name="stoAddr2"/>
+                            </div>
+                            <div class="form-group">
+                                <div>설명</div>
+                                <input type="text" class="form-control form-control-user" id="stoInfo" name="stoInfo">
+                            </div>
+                            <div class="form-group">
+                                <div>카테고리</div>
+                                <input type="text" class="form-control form-control-user" id="stoCatName"
+                                       name="stoCatName"/>
+                            </div>
+                            <div id="addMenu">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div>메뉴</div>
+                                        <input type="text" class="form-control form-control-user" id="stoMenuName"
+                                               name="stoMenuName"/>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div>가격</div>
+                                        <input type="text" class="form-control form-control-user" id="stoMenuPrice"
+                                               name="stoMenuPrice"/>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div>사진</div>
+                                        <input type="text" class="form-control form-control-user" id="file"
+                                               name="file"/>
+                                    </div>
+                                </div>
+                                <div>
 
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
     <!-- /.container-fluid -->
 </th:block>
