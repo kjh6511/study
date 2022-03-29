@@ -10,9 +10,12 @@ import com.masjjim.store.domain.request.ReqStore;
 import com.masjjim.store.domain.request.ReqStoreCategory;
 import com.masjjim.store.domain.request.ReqStoreMenu;
 import com.masjjim.store.domain.request.ReqStoreReply;
+import com.masjjim.store.domain.response.ResStoreList;
 import com.masjjim.store.mapper.StoreMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -26,10 +29,12 @@ public class StoreService {
         store.setStoName(reqStore.getStoName());
         store.setStoNum(reqStore.getStoNum());
         store.setStoCell(reqStore.getStoCell());
+        store.setStoAddr(reqStore.getStoAddr());
         store.setStoAddr1(reqStore.getStoAddr1());
         store.setStoAddr2(reqStore.getStoAddr2());
         store.setStoInfo(reqStore.getStoInfo());
         store.setStoType(reqStore.getStoType());
+        store.setMemNo(memNo);
         store.setStoStat("004001");//활성
         storeMapper.createStore(store);
 
@@ -69,5 +74,9 @@ public class StoreService {
         storeReply.setStoRlyInfo(reqStoreReply.getStoRlyInfo());
         storeReply.setStoRlyStat("004001");//활성
         storeMapper.createStoreReply(storeReply);
+    }
+
+    public List<ResStoreList> readStoreList(Integer borMenuNo){
+        return storeMapper.readStoreList(borMenuNo);
     }
 }

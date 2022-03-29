@@ -5,24 +5,26 @@
         INSERT INTO T_200
                 ( sto_name
      			, sto_num
-     			, sto_cell
+     			, sto_addr
      			, sto_addr1
      			, sto_addr2
      			, sto_info
      			, sto_type
      			, sto_stat
      			, sto_reg_dt
+     			, mem_no
      			)
      		VALUES
      			( #{stoName}
      			, #{stoNum}
-     			, #{stoCell}
+     			, #{stoAddr}
      			, #{stoAddr1}
      			, #{stoAddr2}
      			, #{stoInfo}
      			, #{stoType}
      			, #{stoStat}
      			, now()
+				, #{memNo}
      			)
     </insert>
 
@@ -83,11 +85,30 @@
      			)
     </insert>
 
+	<select id="readStoreList" resultType="ResStoreList">
+		SELECT sto_no
+			 , sto_name
+			 , sto_num
+			 , sto_addr
+			 , sto_addr1
+			 , sto_addr2
+			 , sto_info
+			 , sto_type
+			 , stoTypeName AS cod.code_name
+			 , sto_stat
+			 , sto_reg_dt
+		FROM T_200 sto
+		LEFT OUTER JOIN T_311 bor ON bor.sto_no   = sto.sto_no
+		LEFT OUTER JOIN T_000 cod ON cod.code_num = sto.sto_type
+		WHERE stoStat != '004002'
+		AND bor.bor_menu_no = #{borMenuNo}
+	</select>
+
 	<select id="readStore" resultType="ResStore">
 		SELECT sto_no
 			 , sto_name
 			 , stoNum
-			 , stoCell
+			 , stoAddr
 			 , stoAddr1
 			 , stoAddr2
 			 , stoInfo

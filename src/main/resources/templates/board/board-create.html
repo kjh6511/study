@@ -16,6 +16,7 @@
                     <div class="inputForm">
                         <form id="createBoardForm">
                             <div class="form-group row">
+                                <input type="hidden" th:value="${borMenuNo}" name="borMenuNo" />
                                 <div class="col-sm-3 mb-3 mb-sm-0">
                                     <div>이름</div>
                                     <input type="text" class="form-control form-control-user" id="stoName"
@@ -29,8 +30,7 @@
                                 <div class="col-sm-3" style="margin-bottom:10px; width:120px;">
                                     <div>타입</div>
                                     <select class="form-control" id="stoType" name="stoType">
-                                        <option value="002001">일반회원</option>
-                                        <option value="002002">사업자회원</option>
+                                        <option value="005003">기타</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-3" style="margin-bottom:10px; width:120px;">
@@ -44,10 +44,11 @@
                             <div class="form-group">
                                 <div class="d-flex justify-content-between" style="margin-bottom:5px;">
                                     <div>주소</div>
-                                    <button class="btn btn-outline-info btn-sm">위치선택</button>
+                                    <a class="btn btn-outline-info btn-sm" href="#" role="button" data-toggle="modal"
+                                       data-target="#createBoardMapModal" id="selectMap" >위치선택</a>
                                 </div>
-                                <input type="email" class="form-control form-control-user" id="getAddr"
-                                       placeholder="자동입력">
+                                <input type="text" class="form-control form-control-user" id="stoAddr" name="stoAddr"
+                                       placeholder="위치를 선택해주세요." readonly>
                                 <input type="hidden" id="stoAddr1" name="stoAddr1"/>
                                 <input type="hidden" id="stoAddr2" name="stoAddr2"/>
                             </div>
@@ -55,34 +56,64 @@
                                 <div>설명</div>
                                 <input type="text" class="form-control form-control-user" id="stoInfo" name="stoInfo">
                             </div>
-                            <div class="form-group">
-                                <div>카테고리</div>
-                                <input type="text" class="form-control form-control-user" id="stoCatName"
-                                       name="stoCatName"/>
-                            </div>
-                            <div id="addMenu">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div>메뉴</div>
-                                        <input type="text" class="form-control form-control-user" id="stoMenuName"
-                                               name="stoMenuName"/>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div>가격</div>
-                                        <input type="text" class="form-control form-control-user" id="stoMenuPrice"
-                                               name="stoMenuPrice"/>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div>사진</div>
-                                        <input type="text" class="form-control form-control-user" id="file"
-                                               name="file"/>
-                                    </div>
-                                </div>
-                                <div>
-
-                                </div>
+                            <!--                            <div class="categoryMenu">
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-10">
+                                                                    <div>카테고리</div>
+                                                                    <input type="text" class="form-control form-control-user" name="stoCatName"/>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <div>&nbsp;</div>
+                                                                    <div class="bi bi-plus-lg btn text-primary " id="addMenuBtn">&nbsp;메뉴추가</div>
+                                                                </div>
+                                                            </div>
+                                                            <div id="totalMenu" style="overflow-x:hidden; overflow-y:auto; height:230px;">
+                                                                <div class="row">
+                                                                    <div class="col-sm-4">
+                                                                        <div>메뉴</div>
+                                                                        <input type="text" class="form-control form-control-user"
+                                                                               name="stoMenuName"/>
+                                                                    </div>
+                                                                    <div class="col-sm-4">
+                                                                        <div>가격</div>
+                                                                        <input type="text" class="form-control form-control-user"
+                                                                               name="stoMenuPrice"/>
+                                                                    </div>
+                                                                    <div class="col-sm-4">
+                                                                        <div>사진(사진파일만)</div>
+                                                                        <input type="file" accept="image/*" class="btn" name="stoMenuFile"/>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>소개</div>
+                                                                    <input type="text" class="form-control form-control-user" name="stoMenuInfo"/>
+                                                                </div>
+                                                                <hr class="sidebar-divider">
+                                                            </div>
+                                                        </div>-->
+                            <div class="form-group mt-3">
+                                <button type="button" class="btn btn-primary" id="createBoardBtn">등록</button>
                             </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="createBoardMapModal" tabindex="-1" role="dialog"
+         aria-labelledby="createBoardMapModalLabel" aria-hidden="true">
+        <div class="modal-xl modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-info text-gray-100">
+                    <h5 class="modal-title" id="createBoardMapModalLabel">위치검색</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span class="text-gray-100" aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div id="map" style="width: 1200px; height:600px;"></div>
                     </div>
                 </div>
             </div>
@@ -91,6 +122,7 @@
     <!-- /.container-fluid -->
 </th:block>
 <th:block layout:fragment="script">
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=09rw95dvir&submodules=geocoder"></script>
     <script th:src="@{/js/board-create.js}"></script>
 </th:block>
 </html>

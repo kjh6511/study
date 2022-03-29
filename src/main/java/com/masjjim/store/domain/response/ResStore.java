@@ -16,6 +16,7 @@ public class ResStore {
     private String stoName;
     private Integer stoNum;
     private String stoCell;
+    private String stoAddr;
     private String stoAddr1;
     private String stoAddr2;
     private String stoInfo;

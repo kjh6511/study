@@ -5,6 +5,9 @@ import com.masjjim.store.domain.entity.StoreCategory;
 import com.masjjim.store.domain.entity.StoreMenu;
 import com.masjjim.store.domain.entity.StoreReply;
 import com.masjjim.store.domain.response.ResStore;
+import com.masjjim.store.domain.response.ResStoreList;
+
+import java.util.List;
 
 public interface StoreMapper {
     void createStore(Store store);
@@ -12,4 +15,5 @@ public interface StoreMapper {
     void createStoreMenu(StoreMenu storeMenu);
     void createStoreReply(StoreReply storeReply);
     ResStore readStore(Integer stoNo);
+    List<ResStoreList> readStoreList(Integer borMenuNo);
 }
