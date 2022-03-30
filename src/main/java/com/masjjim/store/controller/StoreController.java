@@ -32,6 +32,7 @@ public class StoreController {
     @ApiOperation("목록")
     @GetMapping("/list/{borMenuNo}")
     public Header<List<ResStoreList>> readStoreList(@PathVariable("borMenuNo") Integer borMenuNo) throws Exception {
+        //페이징으로 바꾸기
         List<ResStoreList> resStoreList = storeService.readStoreList(borMenuNo);
         return Header.DATA(resStoreList);
     }

@@ -52,6 +52,17 @@ public class frontController {
         return "board/board";
     }
 
+    @GetMapping("/store-view")
+    public String readStore(Model model, HttpServletRequest request){
+        Integer borCatNo = Integer.valueOf(request.getParameter("borCatNo"));
+        Integer borMenuNo = Integer.valueOf(request.getParameter("borMenuNo"));
+        Integer stoNo = Integer.valueOf(request.getParameter("stoNo"));
+        model.addAttribute("borCatNo",borCatNo);
+        model.addAttribute("borMenuNo",borMenuNo);
+        model.addAttribute("stoNo",stoNo);
+        return "store/store-view";
+    }
+
     @GetMapping("/board-setting")
     public String boardSetting(Model model){
         model.addAttribute("menu","게시판 설정");

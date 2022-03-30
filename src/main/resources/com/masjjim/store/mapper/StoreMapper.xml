@@ -86,22 +86,24 @@
     </insert>
 
 	<select id="readStoreList" resultType="ResStoreList">
-		SELECT sto_no
-			 , sto_name
-			 , sto_num
-			 , sto_addr
-			 , sto_addr1
-			 , sto_addr2
-			 , sto_info
-			 , sto_type
-			 , stoTypeName AS cod.code_name
-			 , sto_stat
-			 , sto_reg_dt
+		SELECT sto.sto_no 	  AS stoNo
+			 , sto.sto_name   AS stoName
+			 , sto.sto_num    AS stoNum
+			 , sto.sto_addr   AS stoAddr
+			 , sto.sto_addr1  AS stoAddr1
+			 , sto.sto_addr2  AS stoAddr2
+			 , sto.sto_type   AS stoType
+			 , cod.code_name  AS stoTypeName
+			 , sto.sto_stat   AS stoStat
+			 , sto.sto_reg_dt AS stoRegDt
+			 , mem.mem_nic AS memNic
 		FROM T_200 sto
 		LEFT OUTER JOIN T_311 bor ON bor.sto_no   = sto.sto_no
 		LEFT OUTER JOIN T_000 cod ON cod.code_num = sto.sto_type
-		WHERE stoStat != '004002'
+		LEFT OUTER JOIN T_100 mem ON mem.mem_no   = sto.mem_no
+		WHERE sto.sto_stat != '004002'
 		AND bor.bor_menu_no = #{borMenuNo}
+		ORDER BY sto.sto_no DESC
 	</select>
 
 	<select id="readStore" resultType="ResStore">

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/default_layout">
+<th:block layout:fragment="content">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="card shadow mb-4" style="height:78vh;">
+                <div class="border-left-info card-header py-3 d-flex justify-content-between">
+                    <h1 class="h3 mb-0 text-gray-800">상세보기</h1>
+                </div>
+                <div class="card-body">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+</th:block>
+<th:block layout:fragment="script">
+    <script th:src="@{/js/store-view.js}"></script>
+</th:block>
+</html>

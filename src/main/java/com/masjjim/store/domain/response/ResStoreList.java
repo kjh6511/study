@@ -23,6 +23,6 @@ public class ResStoreList {
     private String stoStat;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime stoRegDt;
-    private String memName;
+    private String memNic;
 
 }
