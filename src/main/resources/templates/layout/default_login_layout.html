@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<th:block th:replace="fragment/login_head :: loginHeadFragment"></th:block>
+<body>
+<div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <th:block layout:fragment="content"></th:block>
+                </div>
+            </div>
+        </main>
+    </div>
+    <th:block th:replace="fragment/login_footer :: loginFooterFragment"></th:block>
+</div>
+</body>
+</html>

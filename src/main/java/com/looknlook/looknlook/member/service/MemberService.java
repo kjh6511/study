@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -41,5 +42,14 @@ public class MemberService {
 
     public Member readMember(Long memNo) {
         return memberRepository.findById(memNo).orElse(null);
+    }
+
+    public void updateMember(ReqMember reqMember) {
+        Optional<Member> opt = memberRepository.findById(reqMember.getMemNo());
+        Member member = opt.get();
+        member.setMemId(reqMember.getMemId());
+        member.setMemPw(reqMember.getMemPw());
+        member.setMemName(reqMember.getMemName());
+        memberRepository.save(member);
     }
 }

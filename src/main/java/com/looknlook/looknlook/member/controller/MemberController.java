@@ -35,4 +35,17 @@ public class MemberController {
         model.addAttribute("member", member);
         return "member/member_detail";
     }
+
+    @GetMapping("/modify")
+    public String readMemberModify(@AuthenticationPrincipal Member getMember, Model model) throws Exception {
+        Member member = memberService.readMember(getMember.getMemNo());
+        model.addAttribute("member", member);
+        return "member/member_modify";
+    }
+
+    @PostMapping("/modify")
+    public String updateMemberModify(ReqMember reqMember)throws Exception{
+        memberService.updateMember(reqMember);
+        return "redirect:/member/myinfo";
+    }
 }

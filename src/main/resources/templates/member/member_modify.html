@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p>내정보 수정</p>
+<form th:action="@{/member/modify}" method="post">
+    <input type="hidden" name="memNo" th:value="${member.MemNo}">
+    <input type="text" name="MemId" th:value="${member.MemId}">
+    <input type="text" name="MemPw" th:value="${member.MemPw}">
+    <input type="text" name="MemName" th:value="${member.MemName}">
+    <button type="submit">수정</button>
+</form>
+</body>
+</html>

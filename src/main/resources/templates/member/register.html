@@ -1,36 +1,60 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Hello</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-</head>
-<body>
-<form class="registerFrom" action="/register" method="POST">
-    <div class="row">
-        <div class="input-field col s12">
-            <input id="memId" name="memId"type="text" class="validate"/>
-            <label for="memId">Id</label>
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/default_login_layout">
+<th:block layout:fragment="content">
+    <div class="col-lg-7">
+        <div class="card shadow-lg border-0 rounded-lg mt-5">
+            <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
+            <div class="card-body">
+                <form class="registerFrom" action="/register" method="POST">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3 mb-md-0">
+                                <input class="form-control" id="memId" name="memId" type="text"/>
+                                <label for="memId">ID</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input class="form-control" id="memName" name="memName" type="text"/>
+                                <label for="memName">Name</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select class="custom-select form-control" id="memType" name="memType">
+                          <option selected value="02001">일반</option>
+                          <option value="02002">사업</option>
+                        </select>
+                        <label for="memType">Type</label>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3 mb-md-0">
+                                <input class="form-control" id="inputPassword" name="memPw" type="password"/>
+                                <label for="inputPassword">Password</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3 mb-md-0">
+                                <input class="form-control" id="inputPasswordConfirm" type="password"
+                                       placeholder="Confirm password"/>
+                                <label for="inputPasswordConfirm">Confirm Password</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 mb-0">
+                        <div class="d-grid"><button class="btn btn-primary btn-block" type="submit">Create Account</button></div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center py-3">
+                <div class="small"><a th:href="@{/}">Go to login</a></div>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="input-field col s12">
-            <input id="memPw" name="memPw"type="password" class="validate"/>
-            <label for="memPw">Password</label>
-        </div>
-    </div>
-    <div class="row">
-        <div class="input-field col s12">
-            <input id="memName" name="memName"type="text" class="validate"/>
-            <label for="memName">Name</label>
-        </div>
-    </div>
-    <div class="row">
-        <div class="input-field col s12">
-            <input id="memType" name="memType" type="text" class="validate"/>
-            <label for="memType">Type</label>
-        </div>
-    </div>
-    <input class="signup-btn waves-effect waves-light btn" type="submit" value="가입하기"/>
-</form>
-</body>
+</th:block>
+
 </html>

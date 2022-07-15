@@ -9,6 +9,8 @@ import lombok.ToString;
 @ToString
 public class ReqMember {
 
+    private Long memNo;
+
     private String memId;
 
     private String memPw;
