@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<form class="registerFrom" action="/register" method="POST">
+    <div class="row">
+        <div class="input-field col s12">
+            <input id="memId" name="memId"type="text" class="validate"/>
+            <label for="memId">Id</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12">
+            <input id="memPw" name="memPw"type="password" class="validate"/>
+            <label for="memPw">Password</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12">
+            <input id="memName" name="memName"type="text" class="validate"/>
+            <label for="memName">Name</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12">
+            <input id="memType" name="memType" type="text" class="validate"/>
+            <label for="memType">Type</label>
+        </div>
+    </div>
+    <input class="signup-btn waves-effect waves-light btn" type="submit" value="가입하기"/>
+</form>
+</body>
+</html>
