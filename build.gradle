@@ -35,8 +35,6 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
 
-    compileOnly("org.springframework.boot:spring-boot-devtools")
-
     // Querydsl 추가 시작
     implementation 'com.querydsl:querydsl-jpa'
     annotationProcessor(

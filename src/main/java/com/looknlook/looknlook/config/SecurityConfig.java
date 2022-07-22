@@ -27,9 +27,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /*    http.formLogin().disable()
                 .httpBasic().disable();*/
         http.formLogin()
-                        .loginPage("/")
-                .failureUrl("/login-error")
-                                .defaultSuccessUrl("/home");
+            .loginPage("/")
+            .failureUrl("/login-error")
+             .defaultSuccessUrl("/home");
 
         http.cors();
 

@@ -2,6 +2,7 @@ package com.looknlook.looknlook.member.controller;
 
 import com.looknlook.looknlook.member.domain.RequestDto.ReqLogin;
 import com.looknlook.looknlook.member.domain.RequestDto.ReqMember;
+import com.looknlook.looknlook.member.domain.entity.Member;
 import com.looknlook.looknlook.member.service.MemberService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -46,6 +47,14 @@ public class LoginController {
     public String createRegister(ReqMember reqMember) {
         memberService.createMember(reqMember);
         return "redirect:/";
+    }
+
+    //ID 유효성 검사
+    @ResponseBody
+    @GetMapping("/register/check/{memId}")
+    public String registerPage(@PathVariable("memId") String memId){
+        String result = memberService.checkMemId(memId);
+        return result;
     }
 
     // 추가

@@ -1,7 +1,12 @@
 package com.looknlook.looknlook.member.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.looknlook.looknlook.common.codeEnum.CodeConverter;
+import com.looknlook.looknlook.common.codeEnum.CodeStatus;
+import com.looknlook.looknlook.shop.domain.entity.Shop;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,7 +15,6 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -35,11 +39,16 @@ public class Member implements UserDetails {
 
     private String memType;
 
-    private String memStu;
+    @Convert(converter = CodeConverter.class)
+    @Column(name = "mem_stu")
+    private CodeStatus memStu;
 
     private LocalDateTime regDt;
 
     private String auth;
+
+    @OneToOne(mappedBy = "member", fetch = FetchType.LAZY)
+    private Shop shop;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

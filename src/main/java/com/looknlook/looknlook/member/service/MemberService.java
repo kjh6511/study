@@ -1,5 +1,6 @@
 package com.looknlook.looknlook.member.service;
 
+import com.looknlook.looknlook.common.codeEnum.CodeStatus;
 import com.looknlook.looknlook.member.repository.MemberRepository;
 import com.looknlook.looknlook.member.domain.RequestDto.ReqMember;
 import com.looknlook.looknlook.member.domain.ResponseDto.ResMember;
@@ -29,7 +30,7 @@ public class MemberService {
                 .memPw(memPw)
                 .memName(reqMember.getMemName())
                 .memType(reqMember.getMemType())
-                .memStu("01001") //사용
+                .memStu(CodeStatus.OK)
                 .regDt(LocalDateTime.now())
                 .auth("ROLE_ADMIN")
                 .build();
@@ -51,5 +52,14 @@ public class MemberService {
         member.setMemPw(reqMember.getMemPw());
         member.setMemName(reqMember.getMemName());
         memberRepository.save(member);
+    }
+
+    public String checkMemId(String memId){
+        Optional<Member> member = memberRepository.findByMemId(memId);
+        String result = "사용가능";
+        if(member.isPresent()){
+            result ="ID 중복";
+        }
+        return result;
     }
 }

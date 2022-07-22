@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="layout/default_layout">
+<th:block layout:fragment="content">
+    <div class="container-fluid px-4">
+        <h1 class="mt-4"> shop </h1>
+        <div class="col-md-4">
+                <label for="shopNm">이름</label>
+                <input type="text" class="form-control" id="shopNm" name="shopNm"/>
+                <label for="shopImg">이미지</label>
+                <input type="text" class="form-control" id="shopImg" name="shopImg"/>
+                <label for="shopInfo">정보</label>
+                <input type="text" class="form-control" id="shopInfo" name="shopInfo"/>
+        </div>
+    </div>
+</th:block>
+<th:block layout:fragment="script">
+    <script th:src="@{/js/shop.js}"></script>
+</th:block>
+</html>
