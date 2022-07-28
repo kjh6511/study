@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="layout/default_layout">
+<th:block layout:fragment="content">
+    <div class="container-fluid px-4">
+        <h1 class="mt-4"> 등록 </h1>
+        <div class="col-md-4">
+            <table class='table'>
+                <tr>
+                    <th>이름</th>
+                    <th th:text="${shop.shopNm}"></th>
+                    <th>상태</th>
+                    <th th:text="${shop.shopStu}"></th>
+                </tr>
+                <tr>
+                    <th>이미지</th>
+                    <th th:text="${shop.shopImg}"></th>
+                </tr>
+                <tr>
+                    <th>정보</th>
+                    <th th:text="${shop.shopInfo}"></th>
+                </tr>
+                <tr>
+                    <th>작성자</th>
+                    <th th:text="${shop.member.memName}"></th>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <form id="itemifFrom">
+                <input type="hidden" th:value="${shop.shopNo}" name="shopNo">
+                <label for="itemNm">이름</label>
+                <input type="text" class="form-control" id="itemNm" name="itemNm"/>
+                <label for="itemAmt">가격</label>
+                <input type="text" class="form-control" id="itemAmt" name="itemAmt"/>
+                <label for="itemInfo">정보</label>
+                <input type="text" class="form-control" id="itemInfo" name="itemInfo"/>
+                <label for="topIcNum">종류</label>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <select class="form-select" id="topIcNum" name="topIcNum" onchange="topSelect(this)">
+                            <option th:each="val : ${top}" th:value="${val?.icNum}"
+                                    th:text="${val?.icName}"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <select class="col-md-6 form-select" id="icNum" name="icNum">
+                            <option th:each="val : ${down}" th:value="${val?.icNum}"
+                                    th:text="${val?.icName}"></option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <label for="stockNm">상세이름</label>
+            <input type="text" class="form-control" id="stockNm" name="stockNm"/>
+            <label for="stockSize">크기</label>
+            <input type="text" class="form-control" id="stockSize" name="stockSize"/>
+            <label for="stockQtq">갯수</label>
+            <input type="text" class="form-control" id="stockQtq" name="stockQtq"/>
+
+            <label for="stockNm">상세이름</label>
+            <input type="text" class="form-control" name="stockNm"/>
+            <label for="stockSize">크기</label>
+            <input type="text" class="form-control" name="stockSize"/>
+            <label for="stockQtq">갯수</label>
+            <input type="text" class="form-control" name="stockQtq"/>
+            <div class="mt-4">
+                <a role="button" class="btn btn-secondary">취소</a>
+                <button type="button" class="btn btn-primary" id="createItemifBtn">등록</button>
+            </div>
+        </div>
+    </div>
+</th:block>
+<th:block layout:fragment="script">
+    <script th:src="@{/js/stock.js}"></script>
+</th:block>
+</html>

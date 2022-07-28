@@ -1,13 +1,20 @@
 package com.looknlook.looknlook.shop.domain.entity;
 
+import com.looknlook.looknlook.Item.domain.entity.Item;
 import com.looknlook.looknlook.member.domain.entity.Member;
 import com.looknlook.looknlook.shop.domain.RequestDto.ReqShop;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Builder
@@ -15,7 +22,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 @Table(name = "shop")
 public class Shop {
 
@@ -37,9 +43,12 @@ public class Shop {
     @UpdateTimestamp
     private LocalDateTime updDt;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mem_no")
     private Member member;
+
+    @OneToMany(mappedBy = "shop",fetch = FetchType.LAZY)
+    private List<Item> items;
 
     public static Shop createShop(Member member, ReqShop reqShop) {
         Shop shop = Shop.builder()
@@ -51,6 +60,4 @@ public class Shop {
                 .build();
         return shop;
     }
-
-
 }

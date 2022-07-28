@@ -781,11 +781,11 @@ $dropdown-link-active-bg:           $component-active-bg !default;
 
 $dropdown-link-disabled-color:      $gray-500 !default;
 
-$dropdown-item-padding-y:           .25rem !default;
-$dropdown-item-padding-x:           1.5rem !default;
+$dropdown-stock-padding-y:           .25rem !default;
+$dropdown-stock-padding-x:           1.5rem !default;
 
 $dropdown-header-color:             $gray-600 !default;
-$dropdown-header-padding:           $dropdown-padding-y $dropdown-item-padding-x !default;
+$dropdown-header-padding:           $dropdown-padding-y $dropdown-stock-padding-x !default;
 
 
 // Pagination
@@ -1019,8 +1019,8 @@ $list-group-border-color:           rgba($black, .125) !default;
 $list-group-border-width:           $border-width !default;
 $list-group-border-radius:          $border-radius !default;
 
-$list-group-item-padding-y:         .75rem !default;
-$list-group-item-padding-x:         1.25rem !default;
+$list-group-stock-padding-y:         .75rem !default;
+$list-group-stock-padding-x:         1.25rem !default;
 
 $list-group-hover-bg:               $gray-100 !default;
 $list-group-active-color:           $component-active-color !default;
@@ -1059,7 +1059,7 @@ $breadcrumb-font-size:              null !default;
 
 $breadcrumb-padding-y:              .75rem !default;
 $breadcrumb-padding-x:              1rem !default;
-$breadcrumb-item-padding:           .5rem !default;
+$breadcrumb-stock-padding:           .5rem !default;
 
 $breadcrumb-margin-bottom:          1rem !default;
 

@@ -5,6 +5,6 @@ import com.looknlook.looknlook.member.domain.ResponseDto.ResMember;
 import java.util.List;
 
 public interface MemberQueryRepository{
-    List<ResMember> findAllMemberBy();
+   List<ResMember> findAllMemberBy();
 
 }

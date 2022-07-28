@@ -6,6 +6,7 @@ spring:
     password: test1234
   jpa:
     properties:
+      hibernate.default_batch_fetch_size: 1000
       hibernate:
         show_sql: true
         format_sql: true

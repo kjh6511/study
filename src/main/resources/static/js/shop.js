@@ -10,8 +10,8 @@ $("#createShopBtn").on("click", function() {
             if(data == "FAILURE"){
                alert("중복등록입니다.")
             }else{
-                alert("등록완료")
-                location.reload("/shop/myshop");
+                alert("등록완료");
+                document.location.href ="/shop/myshop";
             };
 
        },

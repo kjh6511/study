@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
 
-  // No need to set list-style: none; since .list-group-item is block level
+  // No need to set list-style: none; since .list-group-stock is block level
   padding-left: 0; // reset padding because ul and ol
   margin-bottom: 0;
   @include border-radius($list-group-border-radius);
@@ -18,7 +18,7 @@
 // Use anchor or button elements instead of `li`s or `div`s to create interactive
 // list items. Includes an extra `.active` modifier class for selected items.
 
-.list-group-item-action {
+.list-group-stock-action {
   width: 100%; // For `<button>`s (anchors become 100% by default though)
   color: $list-group-action-color;
   text-align: inherit; // For `<button>`s (anchors inherit)
@@ -42,10 +42,10 @@
 //
 // Use on `li`s or `div`s within the `.list-group` parent.
 
-.list-group-item {
+.list-group-stock {
   position: relative;
   display: block;
-  padding: $list-group-item-padding-y $list-group-item-padding-x;
+  padding: $list-group-stock-padding-y $list-group-stock-padding-x;
   color: $list-group-color;
   text-decoration: if($link-decoration == none, null, none);
   background-color: $list-group-bg;
@@ -96,7 +96,7 @@
     .list-group-horizontal#{$infix} {
       flex-direction: row;
 
-      > .list-group-item {
+      > .list-group-stock {
         &:first-child {
           @include border-bottom-left-radius($list-group-border-radius);
           @include border-top-right-radius(0);
@@ -111,7 +111,7 @@
           margin-top: 0;
         }
 
-        + .list-group-item {
+        + .list-group-stock {
           border-top-width: $list-group-border-width;
           border-left-width: 0;
 
@@ -134,7 +134,7 @@
 .list-group-flush {
   @include border-radius(0);
 
-  > .list-group-item {
+  > .list-group-stock {
     border-width: 0 0 $list-group-border-width;
 
     &:last-child {
@@ -150,5 +150,5 @@
 // Organizationally, this must come after the `:hover` states.
 
 @each $color, $value in $theme-colors {
-  @include list-group-item-variant($color, theme-color-level($color, -9), theme-color-level($color, 6));
+  @include list-group-stock-variant($color, theme-color-level($color, -9), theme-color-level($color, 6));
 }

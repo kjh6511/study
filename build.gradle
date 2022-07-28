@@ -33,7 +33,7 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation group: 'org.springframework.security', name: 'spring-security-test', version: '5.7.2'
 
     // Querydsl 추가 시작
     implementation 'com.querydsl:querydsl-jpa'
@@ -41,16 +41,20 @@ dependencies {
                 "javax.persistence:javax.persistence-api",
                 "javax.annotation:javax.annotation-api",
                 "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jpa")
+
+
 }
 
-// QueryDSL
-/*sourceSets {
+def querydslSrcDir = 'src/main/generated'
+
+sourceSets {
     main {
         java {
-            srcDirs = ["$projectDir/src/main/java", "$projectDir/build/generated"]
+            srcDirs = ['src/main/java', querydslSrcDir]
         }
     }
-}*/
+}
+
 
 tasks.named('test') {
     useJUnitPlatform()

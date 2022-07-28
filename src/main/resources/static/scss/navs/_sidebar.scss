@@ -3,7 +3,7 @@
     width: $sidebar-collapsed-width;
     min-height: 100vh;
 
-    .nav-item {
+    .nav-stock {
         position: relative;
 
         &:last-child {
@@ -65,7 +65,7 @@
                     color: $gray-500;
                 }
 
-                .collapse-item {
+                .collapse-stock {
                     padding: 0.5rem 1rem;
                     margin: 0 0.5rem;
                     display: block;
@@ -191,7 +191,7 @@
     .sidebar {
         width: $sidebar-base-width !important;
 
-        .nav-item {
+        .nav-stock {
 
             // Accordion
             .collapse {
@@ -272,7 +272,7 @@
             overflow: visible;
             width: $sidebar-collapsed-width !important;
 
-            .nav-item {
+            .nav-stock {
 
                 // Accordion
                 .collapse {
@@ -358,7 +358,7 @@
         color: $gray-500;
     }
 
-    .nav-item {
+    .nav-stock {
         .nav-link {
             color: $gray-600;
 
@@ -421,7 +421,7 @@
         color: fade-out($white, 0.6);
     }
 
-    .nav-item {
+    .nav-stock {
         .nav-link {
             color: fade-out($white, 0.2);
 

@@ -52,7 +52,7 @@
   }
 
   .nav-link.active,
-  .nav-item.show .nav-link {
+  .nav-stock.show .nav-link {
     color: $nav-tabs-link-active-color;
     background-color: $nav-tabs-link-active-bg;
     border-color: $nav-tabs-link-active-border-color;
@@ -90,7 +90,7 @@
 
 .nav-fill {
   > .nav-link,
-  .nav-item {
+  .nav-stock {
     flex: 1 1 auto;
     text-align: center;
   }
@@ -98,7 +98,7 @@
 
 .nav-justified {
   > .nav-link,
-  .nav-item {
+  .nav-stock {
     flex-basis: 0;
     flex-grow: 1;
     text-align: center;

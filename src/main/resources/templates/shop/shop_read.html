@@ -8,12 +8,33 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4"> shop </h1>
         <div class="col-md-4">
-                <label for="shopNm">이름</label>
-                <input type="text" class="form-control" id="shopNm" name="shopNm"/>
-                <label for="shopImg">이미지</label>
-                <input type="text" class="form-control" id="shopImg" name="shopImg"/>
-                <label for="shopInfo">정보</label>
-                <input type="text" class="form-control" id="shopInfo" name="shopInfo"/>
+                <table class='table'>
+                    <tr>
+                        <th>이름</th>
+                        <th th:text="${shop.shopNm}"></th>
+                        <th>상태</th>
+                        <th>
+                            <select th:value="${shop.shopStu}">
+                                <option value="01001" th:selected="${shop.shopStu} == '01001'">사용</option>
+                                <option value="01002" th:selected="${shop.shopStu} == '01002'">대기</option>
+                                <option value="01003" th:selected="${shop.shopStu} == '01003'">중지</option>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>이미지</th>
+                        <th th:text="${shop.shopImg}"></th>
+                    </tr>
+                    <tr>
+                        <th>정보</th>
+                        <th th:text="${shop.shopInfo}"></th>
+                    </tr>
+                    <tr>
+                        <th>작성자</th>
+                        <th th:text="${shop.member.memName}"></th>
+                    </tr>
+                </table>
+            <a role="button" class="btn btn-primary" th:href="@{/item/create}">Item</a>
         </div>
     </div>
 </th:block>
