@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 @ToString
 public class ReqShop {
 
+    private Long shopNo;
+
     private String shopNm;
 
     private String shopImg;

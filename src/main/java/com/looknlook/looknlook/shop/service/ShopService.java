@@ -49,8 +49,19 @@ public class ShopService {
         return resShop;
     }
 
-    public Shop readShop(long shopNo) {
-        return shopRepository.findById(shopNo)
-                .orElseGet(Shop::new);
+    public ResShop readShop(long shopNo) {
+        Shop shop = shopRepository.findById(shopNo)
+                        .orElseGet(Shop::new);
+        ResShop resShop = new ResShop(shop);
+        return resShop;
+    }
+
+    public void updateShop(ReqShop reqShop) {
+        Shop shop = shopRepository.findById(reqShop.getShopNo())
+                                .orElseGet(Shop::new);
+        shop.setShopNm(reqShop.getShopNm());
+        shop.setShopImg(reqShop.getShopImg());
+        shop.setShopInfo(reqShop.getShopInfo());
+        shopRepository.save(shop);
     }
 }

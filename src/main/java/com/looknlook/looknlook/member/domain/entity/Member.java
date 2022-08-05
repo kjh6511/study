@@ -1,8 +1,10 @@
 package com.looknlook.looknlook.member.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.looknlook.looknlook.cart.domain.entity.Cart;
 import com.looknlook.looknlook.common.codeEnum.CodeConverter;
 import com.looknlook.looknlook.common.codeEnum.CodeStatus;
+import com.looknlook.looknlook.order.domain.entity.Order;
 import com.looknlook.looknlook.shop.domain.entity.Shop;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
@@ -15,6 +17,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -49,6 +52,12 @@ public class Member implements UserDetails {
 
     @OneToOne(mappedBy = "member", fetch = FetchType.LAZY)
     private Shop shop;
+
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+    private List<Order> orders;
+
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+    private List<Cart> carts;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -51,15 +51,16 @@ public class ShopController {
     //수정
       @GetMapping("/modify/{shopNo}")
       public String readUdateShop(@PathVariable("shopNo") Long shopNo, Model model){
-
-          return "/";
+          ResShop shop = shopService.readShop(shopNo);
+          model.addAttribute("shop",shop);
+          return "shop/shop_modify";
       }
 
     //수정
-    @PostMapping("/modify")
+    @PutMapping("/modify")
     public String updateShop(@RequestBody ReqShop reqShop){
-
-        return "/";
+        shopService.updateShop(reqShop);
+        return "redirect:/shop/myshop";
     }
 
 

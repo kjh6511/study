@@ -4,17 +4,23 @@ import com.looknlook.looknlook.Item.domain.entity.Item;
 import com.looknlook.looknlook.Item.domain.entity.Stock;
 import com.looknlook.looknlook.Item.domain.entity.ItemCategory;
 import com.looknlook.looknlook.Item.domain.request.ReqItem;
+import com.looknlook.looknlook.Item.domain.request.ReqItemSearch;
 import com.looknlook.looknlook.Item.domain.request.ReqStock;
 import com.looknlook.looknlook.Item.domain.response.ResItemCategoryMenuList;
+import com.looknlook.looknlook.Item.domain.response.ResItemDetail;
+import com.looknlook.looknlook.Item.domain.response.ResItemWithShop;
 import com.looknlook.looknlook.Item.repository.ItemCategoryRepository;
 import com.looknlook.looknlook.Item.repository.ItemRepository;
 import com.looknlook.looknlook.Item.repository.StockRepository;
 import com.looknlook.looknlook.shop.domain.entity.Shop;
 import com.looknlook.looknlook.shop.repository.ShopRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -22,7 +28,7 @@ import java.util.stream.Collectors;
 public class ItemService {
 
     private final ItemCategoryRepository itemCategoryRepository;
-    private final ItemRepository itemIfRepository;
+    private final ItemRepository itemRepository;
     private final StockRepository stockRepository;
     private final ShopRepository shopRepository;
 
@@ -61,7 +67,7 @@ public class ItemService {
                 .shop(shop)
                 .itemCategory(itemCategory)
                 .build();
-        Item creatItem = itemIfRepository.save(item);
+        Item creatItem = itemRepository.save(item);
 
         //item
         for(ReqStock reqStock : reqItem.getStocks()){
@@ -74,5 +80,15 @@ public class ItemService {
                     .build();
             stockRepository.save(stock);
         }
+    }
+
+    public Page<ResItemWithShop> readItemList(ReqItemSearch search, Pageable pageable) {
+        return itemRepository.findItemListSearchPage(search,pageable);
+    }
+
+    public ResItemDetail readItem(Long itemNo) {
+        Item item = itemRepository.findByIdWithStock(itemNo);
+        ResItemDetail itemDetail = new ResItemDetail(item);
+        return itemDetail;
     }
 }
