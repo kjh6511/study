@@ -2,6 +2,13 @@
 # 길이 : len(str)
 # 인덱싱 : str[n]
 # 자르기 : str[0:3]
+# 문자가 알파벳인지 : x.isalpha()
+# 리스트를 문자열로 : ''.join(result)
+# 리스트를 문자열로(숫자포함된 경우) : ''.join(str(s) for s in str_list) 
+# 리스트처럼 for 사용가능
+
+#### 숫자
+# 길이는 str로 바꿔서 : len(str(a))
 
 
 #### input
@@ -27,6 +34,8 @@
 # list = [0] * n   = [0, 0, 0]
 # list = [0 for _ in range(n)]   = [0, 0, 0]
 # list = [[0] for _ in range(n)]   = [[0], [0], [0]]
+# for i in range(4):
+#     print(i)    => 0,1,2,3
 
 ## 정렬
 ## 본체 정렬(값 변화)
