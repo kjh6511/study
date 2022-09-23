@@ -7,6 +7,7 @@
 #원소를 나열하는 모든 경우의 수를 고려해야 하는 상황에서는 순열이나 조합 라이브러리를 사용 itertools
 
 from bz2 import compress
+from multiprocessing.connection import answer_challenge
 
 
 def study_01():
@@ -436,5 +437,210 @@ def study_05():
                 index += 1
         return t
     print(simulate())    
+
+def study_06():
+    
+    def check_delete_cloth(x,y, answer,check, dirc):
+        if [x+1, y,1] not in answer and [x-1, y, 1] not in answer:
+            check =False
+            print("1 :", check)
+            if dirc == 'l' and [x, y-1, 0] not in answer:
+                check = False
+            if dirc == 'r' and [x+1, y-1, 0] not in answer:
+                check = False   
+        return check
+    
+    def check_delete_pillar(x,y,answer):
+        check = True
+        if [x-1, y+1, 1] not in answer or [x+1, y+1, 1] not in answer:
+            check = False
+        return check
+    
+    def solution(n, build_frame):
+        answer = []
+
+        curr = [0,0,0,0] #현재위치, 아래쪽 나무 유무, 왼쪽 보 유무
+        
+        #차례대로 실행
+        for f in build_frame:
+            x = f[0] #x위치
+            y = f[1] #y위치
+            a = f[2] #기둥/보
+            b = f[3] #삭제/설치   
+            # 기둥 검사
+            if a == 0: 
+                #설치
+                if b == 1:
+                    if y + 1 <= n: #n이상 불가
+                        if y == 0 or [x, y-1, 0] in answer or [x-1, y, 1] in answer or [x, y, 1] in answer:
+                            #기둥설치
+                            answer.append([x,y,0])
+                #제거
+                else:
+                    check = True
+                    if [x, y+1, 0] in answer:#설치된 위에 기둥기준
+                       check = check_delete_pillar(x,y+1,0,check)
+                    if [x-1, y+1, 1] in answer: #설치된 왼쪽 보 기준
+                        check = check_delete_cloth(x-1, y+1, answer,check,"l")
+                    if [x+1, y+1, 1] in answer: #설치된 오른쪽 보 기준
+                        check = check_delete_cloth(x+1, y+1, answer,check,"r")
+                    if check == True:
+                        answer.remove([x,y,a])
+                        
+            #보 검사
+            else:
+                #설치
+                if b == 1:
+                    if x + 1 <= n:
+                        if [x, y-1, 0] in answer or [x+1, y, 1] in answer or [x+1, y-1, 0] in answer:
+                            #보 설치
+                            answer.append([x,y,1])    
+                #제거
+                else:
+                    check = True
+                    if [x+1,y,0] in answer: #오른쪽 기둥
+                        check = check_delete_pillar(x+1,y,answer,check)
+                    if [x,y,0] in answer: #같은자리(왼쪽기준) 기둥
+                        check = check_delete_pillar(x,y,answer,check)
+                    if [x-1, y ,1] in answer and [x,y-1,0] not in answer and [x-1, y-1,0]: #왼쪽에 보가 있다면
+                        check = False
+                    if [x+1, y ,1] in answer and [x+1,y-1,0] not in answer and [x, y-1,0]: #오른쪽에 보가 있다면
+                        check = False
+                    if check == True:
+                        answer.remove([x,y,a])
+        
+        #순서대로 정렬 
+        answer.sort(key=lambda x: (x[0],x[1],x[2])) 
+        return answer    
+    
+    
+    n = 5
+    build_frame = [[0,0,0,1], [2,0,0,1], [4,0,0,1], [0,1,1,1],[1,1,1,1],[2,1,1,1], [3,1,1,1], [2,0,0,0], [1,1,1,0], [2,2,0,1]] 
+    
+    print(solution(n,build_frame))
+    
+    ##책풀이
+    #시물레이션 문제 
+    
+    #현재 설치된 구조물이 '가능한' 구조물인지 확인하는 함수
+    def possible(answer):
+        for x,y, stuff in answer:
+            if stuff == 0: # 설치된 것이 '기둥'인 경우
+                #'바닥 위' 혹은 '보의 한쪽 끝부분 위' 혹은 '다른 기둥 위' 라면 정상
+                if y == 0 or [x-1,y,1] in answer or [x,y,1] in answer or [x,y-1,0] in answer:
+                    continue
+                return False #아니라면 거짓
+            elif stuff == 1: #설치된 것이 '보'인 경우
+                #'한쪽 끝부분이 기둥 위' 혹은 '양쪽 끝부분이 다른 보와 동시에 연결'이라면 정상
+                if [x,y-1,0] in answer or [x+1, y-1, 0] in answer or ([x-1,y,1] in answer and [x+1,y,1] in answer):
+                    continue
+                return False #아니라면 거짓 반환
+        return True
+    
+    def solution02(n, build_frame):
+        answer = []
+        for frame in build_frame: #작업의 개수는 최대 1000개
+            x, y, stuff, operate = frame
+            if operate == 0: #삭제하는 경우
+                answer.remove([x,y,stuff]) #일단 삭제를 해본 뒤에 
+                if not possible(answer): #가능한 구조물인지 확인
+                    answer.append([x,y,stuff]) #가능한 구조물이 아니라면 다시 설치
+            if operate == 1: #설치하는 경우
+                answer.append([x,y,stuff]) #일단 설치를 해본 뒤에
+                if not possible(answer): #가능한 구조물인지 확인
+                    answer.remove([x,y,stuff]) #가능한 구조물이 아니라면 다시 제거
+        return sorted(answer) #정렬된 결과를 반환
+                
+    print(solution02(n,build_frame))
+
+def study_07():
+    ##치킨 배달, 책풀이와 같이
+
+    #조합 라이브러리
+    from itertools import combinations
+        
+    n , m = map(int,input().split())
+    
+    data = [[0,0,1,0,0],[0,0,2,0,1],[0,1,2,0,0],[0,0,1,0,0],[0,0,0,0,2]]
+    
+    # for i in range(n):
+    #     info = list(map(int,input().split()))
+    #     data.append(info)
+
+    house = []
+    chicken = []
+    
+    # 집과 치킨 데이터 저장
+    for j in range(n):
+        for k in range(n):
+            if data[j][k] == 1:
+                house.append([j,k])
+            elif data[j][k] == 2:
+                chicken.append([j,k])   # 3번째 최소가게 카운트 
+   
+    #모든 치킨집 중에서 m개의 치킨집을 뽑는 조합 계산
+    cadidates = list(combinations(chicken, m))
+    
+    #치킨 거리의 합을 계산하는 함수
+    def get_sum(candidate):
+        result = 0
+        #모든 집에 대하여
+        for hx, hy in house:
+            #가장 가까운 집 찾기
+            temp = 1e9
+            for cx, cy in candidate:
+                temp = min(temp, abs(hx -cx) + abs(hy-cy))
+            #가장 가까운 치킨집까지의 거리 더하기
+            result += temp
+        return result 
+    
+    #치킨 거리의 합의 초소를 찾아 출력
+    result = 1e9
+    for cadidate in cadidates:
+        result = min(result, get_sum(cadidate))
+    
+    print(result)
+
+def study_08():
+    ##외벽점검 , 책풀이와 함께
+    #모든 경우의 수 구하는 라이브러리 
+    from itertools import permutations
+    
+    def solution(n, weak, dist):
+        #길이를 2배로 늘려서 '원형'을 일자 형태로 변형
+        length = len(weak)
+        for i in range(length):
+            weak.append(weak[i]+n)
+        answer = len(dist) + 1 #투입할 친구 수의 최솟값을 찾아야 하므로 len(dist)+1로 초기화
+        #0부터 length -1 까지의 위치를 각각 시작점으로 설정
+        for start in range(length):
+            #친구를 나열하는 모든 경우의 수 각각에 대햐여 확인
+            for friends in list(permutations(dist,len(dist))):
+                count = 1 #투입한 친구 수
+                #해당 친구가 점검할 수 있는 마지막 위치
+                position = weak[start] + friends[count-1]
+                #시작점부터 모든 취약 지점을 확인
+                for index in range(start, start+length):
+                    #점검할 수 있는 위치를 벗어나는 경우
+                    if position < weak[index]:
+                        count += 1 #새로운 친구를 투입
+                        if count > len(dist): #더 투입이 불가능하다면 종료
+                            break
+                        position = weak[index] + friends[count -1]
+            answer = min(answer, count) #최솟값
+            
+        if answer > len(dist):
+            return -1
+        return answer
+    
+    
+    n = 12
+    weak = [1,5,6,10]
+    dist = [1,2,3,4]
+    print(solution(n,weak,dist))
+
+
+    
+
 ### 실행
-study_05()    
+study_08()    

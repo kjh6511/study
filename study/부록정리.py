@@ -136,6 +136,7 @@ def study_02():
     list(combinations_with_replacement(data,2)) #2개를 뽑는 모든 조합 구하기(중복허용)
     
     #heapq : 힙기능 제공, 우선순위 큐 기능을 구현하기 위해 사용, 최단경로
+    #최소값으로 정렬
     import heapq
     def heapsort(iterable):
         h = []
@@ -158,6 +159,10 @@ def study_02():
             result.append(-heapq.heappop(h))
         return result
     result = heapsortR([1,3,5,7,9,2,4,6,8,0]) #[9,8,7,6,5,4,3,2,1,0]
+    
+    #기존 리스트를 힙으로
+    # heapq.heapify(list)
+    
     
     #bisect: 이진탐색(Binary Search)기능 제공
     #bisect_left(a,x):정렬된 순서를 유지하면서 리스트 a에 데이터 x를 삽입할 가장 왼쪽 인덱스를 찾는 메서드
