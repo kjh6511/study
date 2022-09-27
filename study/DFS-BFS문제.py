@@ -204,5 +204,38 @@ def study_03():
                     q.append((virus, a+1, nx, ny))
     print(graph[x-1][y-1])
     
+    
+def study_04():
+    #괄호
+    from collections import deque
+    data = []
+    n = input()
+    check = 0
+
+    ##가장 마지막 괄호 찾기
+    while check < len(n):
+            
+        if n[check] == '(' and n[check+1] == ')':
+            check += 1
+        else:    
+            data.append(check)
+        check += 1
+        if check == len(n)-1:
+            if n[check-1] != '(' and n[check] != ')':
+                data.append(check)
+            break
+    
+    n = list(n)
+    for i in range(len(data)//2):
+        n[data[i]] = "("
+        n[data[len(data)-i-1]] = ")"
+    
+    n = ''.join(n)
+        
+    print(n)
+            
+    ##책풀이
+    
+        
 #실행
-study_03()
+study_04()

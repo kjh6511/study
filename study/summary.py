@@ -9,6 +9,8 @@
 # 리스트를 문자열로 : ''.join(result)
 # 리스트를 문자열로(숫자포함된 경우) : ''.join(str(s) for s in str_list) 
 # 리스트처럼 for 사용가능
+# 인덱스를 이용하여 문자열을 대치할려면 list(str)다음 인덱스로 바꾸고 ''.join(str)
+
 
 #### 숫자
 # 길이는 str로 바꿔서 : len(str(a))
