@@ -130,8 +130,8 @@ def study_02():
     #itertools : 반복 데이터 처리 
     from itertools import permutations, combinations, product, combinations_with_replacement
     data = ['A','B','C']
-    list(permutations(data,3)) #리스트에서 3개를 뽑아 모든 순열 구하기(순서고려)
-    list(combinations(data,2)) #리스트에서 2개를 뽑는 모든 조합 구하기 (순서x)
+    list(permutations(data,3)) #리스트에서 3개를 뽑아 모든 순열 구하기(순서고려, 각순서대로 여러 경우의수)
+    list(combinations(data,2)) #리스트에서 2개를 뽑는 모든 조합 구하기 (순서x, 갯수만큼만 나오게끔)
     list(product(data, repeat=2)) # 2개를 뽑는 모든 순열 구하기 (중복허용)
     list(combinations_with_replacement(data,2)) #2개를 뽑는 모든 조합 구하기(중복허용)
     

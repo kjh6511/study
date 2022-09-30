@@ -20,7 +20,7 @@
 # 나머지 :  a%b
 # 몫 : a//b
 # 거듭제곱 :  a**b
-
+# INF = int(1e9) #무한
 
 #### input
 ## 기본
@@ -54,6 +54,10 @@
 #     print(i)    => 0,1,2,3
 # [i for i in range(20) if i % 2 == 1 ] #홀수로 20까지 숫자 [1,3,5,7,9,11,13,15,17,19]
 # [i * i for i in range(1,10)] #1~9까지 제곱수 [1,4,9,16,25,36,49,64,81] 
+
+##복사
+#import copy
+#data = copy.deepcopy(graph)
 
 ## 정렬
 ## 본체 정렬(값 변화)
@@ -89,3 +93,18 @@
 # () -> 듀플(Tuple) : 수정불가, 여러개의 값을 한번에 다루기 위한 컨테이너
 # {} -> 셋(set) :  집합형태를 쉽게처리하기위한 데이터 타입, key가 없다, index사용불가, 중복허용하지 않음, 순서가 없다
 # {:} -> 딕셔너리(Dicionary) : 여러개의 값을 한번에 다루기위한 컨테이너, Key-Value, key는 유니크, Value는 수정가능 
+
+
+
+##재귀
+# def sol(count):
+#     count -= 1
+#     a=''
+#     if count == 0:
+#         return a
+#     a = "["
+#     a += sol(count)
+#     a += "]"
+#     return a
+
+# print(sol(4))  ### [[[]]]
