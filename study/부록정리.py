@@ -136,6 +136,12 @@ def study_02():
     list(combinations_with_replacement(data,2)) #2개를 뽑는 모든 조합 구하기(중복허용)
     
     #heapq : 힙기능 제공, 우선순위 큐 기능을 구현하기 위해 사용, 최단경로
+    # 우선순위 큐 
+    # q = queue.PriorityQueue()   #(heapq가 더빠름)
+    # for i in data:
+    #     q.put(i)
+    # 꺼낼때는 q.get()
+    
     #최소값으로 정렬
     import heapq
     def heapsort(iterable):

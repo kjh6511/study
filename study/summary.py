@@ -10,6 +10,7 @@
 # 리스트를 문자열로(숫자포함된 경우) : ''.join(str(s) for s in str_list) 
 # 리스트처럼 for 사용가능
 # 인덱스를 이용하여 문자열을 대치할려면 list(str)다음 인덱스로 바꾸고 ''.join(str)
+# 단어 뒤집기 : word[::-1]
 
 
 #### 숫자
@@ -32,6 +33,7 @@
 # input()
 
 ## 여러개
+# 문자 : a, b, c, d = input().split()
 # 숫자 : map(int,input().split())
 # 리스트_숫자 : list(map(int, input().split()))
 
@@ -87,6 +89,12 @@
     # remove_set={3,5}
     # result = [i for i in a if i not in remove_set] #[2,2]
 #자르기[a,b,c] : list[:1](처음부터 1번전까지 a), list[1:3](1번부터 3번전까지 b,c), list[2:](2번부터 끝까지 c)
+#중간갑 찾기
+#    data.sort()
+#     print(data[(n-1)//2])
+#해당값 카운트 = list.count(val)
+
+
 
 ######
 # [] -> 리스트(list) : 수정가능, 여러개의 값을 한번에 다루기 위한 컨데이너 
@@ -108,3 +116,14 @@
 #     return a
 
 # print(sol(4))  ### [[[]]]
+
+
+#이진 탐색을 사용
+    # from bisect import bisect_left, bisect_right
+    
+    # #값이 [left_value, right_vlaue]인 데이터의 개수를 반환하는 함수
+    # def count_by_range(a, left_value, right_vlaue):
+    #     right_index = bisect_right(a, right_vlaue)
+    #     left_index = bisect_left(a,left_value)
+    #     return right_index - left_index
+    
