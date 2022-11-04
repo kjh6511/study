@@ -6,10 +6,6 @@
 #시물레이션 : 문제에서 제시하는 논리나 동작 과정을 그대로 코드로 옮겨야 하는 유형을 의미
 #원소를 나열하는 모든 경우의 수를 고려해야 하는 상황에서는 순열이나 조합 라이브러리를 사용 itertools
 
-from bz2 import compress
-from multiprocessing.connection import answer_challenge
-
-
 def study_01():
     #럭키 스트레이트
     #왼쪽 수 합과 오른쪽 수 합이 동일한지

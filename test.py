@@ -87,3 +87,16 @@ print("hello python")
 # 제거
 # list.remove(2) #값2를 삭제
 # list.pop(2) #2번째 값 제거(꺼내기) 
+
+
+import heapq
+
+q = []
+
+heapq.heappush(q,3)
+heapq.heappush(q,2)
+heapq.heappush(q,7)
+heapq.heappush(q,0)
+
+while q:
+    print(heapq.heappop(q))
