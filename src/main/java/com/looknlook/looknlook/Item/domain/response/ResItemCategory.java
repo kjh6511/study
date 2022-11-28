@@ -21,4 +21,5 @@ public class ResItemCategory {
         this.icName = itemCategory.getIcName();
     }
 
+    public ResItemCategory(){}
 }

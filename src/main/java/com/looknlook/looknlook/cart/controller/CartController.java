@@ -4,8 +4,6 @@ import com.looknlook.looknlook.cart.domain.request.ReqCart;
 import com.looknlook.looknlook.cart.domain.response.ResCart;
 import com.looknlook.looknlook.cart.service.CartService;
 import com.looknlook.looknlook.member.domain.entity.Member;
-import com.looknlook.looknlook.order.domain.request.ReqOrderStock;
-import com.looknlook.looknlook.order.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

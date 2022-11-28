@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -40,5 +41,14 @@ public class CartService {
                 .build();
 
         cartRepository.save(cart);
+    }
+
+    public List<ResCart> readCartSelectList(Long[] cartNoList) {
+        List<ResCart> cartList = new ArrayList<>();
+        for(Long cartNo: cartNoList) {
+            ResCart resCart = cartRepository.findByCartNoWithStock(cartNo);
+            cartList.add(resCart);
+        }
+        return cartList;
     }
 }

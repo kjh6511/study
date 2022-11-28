@@ -1,5 +1,6 @@
 package com.looknlook.looknlook.Item.domain.entity;
 
+import com.looknlook.looknlook.reply.domain.entity.Reply;
 import com.looknlook.looknlook.shop.domain.entity.Shop;
 import lombok.*;
 import org.hibernate.annotations.LazyCollection;
@@ -42,4 +43,7 @@ public class Item {
 
     @OneToMany(mappedBy = "item", fetch = FetchType.LAZY)
     private List<Stock> stocks;
+
+    @OneToMany(mappedBy = "item", fetch = FetchType.LAZY)
+    private List<Reply> replies;
 }

@@ -27,11 +27,24 @@ public class CartQueryRepositoryImpl implements CartQueryRepository {
         return queryFactory
                 .select(new QResCart(cart))
                 .from(cart)
-                .leftJoin(cart.member, member).fetchJoin()
-                .leftJoin(cart.stock, stock).fetchJoin()
-                .leftJoin(cart.stock.item, item).fetchJoin()
+                .leftJoin(cart.member, member)
+                .leftJoin(cart.stock, stock)
+                .leftJoin(cart.stock.item, item)
                 .where(cart.member.memNo.eq(memNo))
                 .distinct()
                 .fetch();
+    }
+
+    @Override
+    public ResCart findByCartNoWithStock(Long cartNo) {
+        return queryFactory
+                .select(new QResCart(cart))
+                .from(cart)
+                .leftJoin(cart.member, member)
+                .leftJoin(cart.stock, stock)
+                .leftJoin(cart.stock.item, item)
+                .where(cart.cartNo.eq(cartNo))
+                .distinct()
+                .fetchOne();
     }
 }

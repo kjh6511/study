@@ -1,7 +1,6 @@
 package com.looknlook.looknlook.Item.domain.entity;
 
 import com.looknlook.looknlook.cart.domain.entity.Cart;
-import com.looknlook.looknlook.order.domain.entity.Order;
 import com.looknlook.looknlook.order.domain.entity.OrderStock;
 import lombok.*;
 

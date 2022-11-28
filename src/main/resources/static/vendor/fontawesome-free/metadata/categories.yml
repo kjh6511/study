@@ -1393,7 +1393,7 @@ maps:
     - blind
     - bomb
     - book
-    - bookmark
+    - Bookmark
     - briefcase
     - building
     - car
@@ -1693,7 +1693,7 @@ objects:
     - bomb
     - book
     - book-dead
-    - bookmark
+    - Bookmark
     - briefcase
     - broadcast-tower
     - bug
@@ -1905,7 +1905,7 @@ payments-shopping:
     - apple-pay
     - bell
     - bitcoin
-    - bookmark
+    - Bookmark
     - btc
     - bullhorn
     - camera
@@ -2071,7 +2071,7 @@ science-fiction:
     - globe
     - hand-spock
     - jedi
-    - jedi-order
+    - jedi-orders
     - journal-whills
     - meteor
     - moon
@@ -2112,7 +2112,7 @@ security:
   label: Security
 shapes:
   icons:
-    - bookmark
+    - Bookmark
     - calendar
     - certificate
     - circle
@@ -2547,7 +2547,7 @@ writing:
     - archive
     - blog
     - book
-    - bookmark
+    - Bookmark
     - edit
     - envelope
     - envelope-open

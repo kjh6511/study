@@ -1,19 +1,17 @@
 package com.looknlook.looknlook.order.controller;
 
-import com.looknlook.looknlook.Item.domain.response.ResItemCategoryMenuList;
-import com.looknlook.looknlook.Item.service.ItemService;
+import com.looknlook.looknlook.cart.domain.response.ResCart;
+import com.looknlook.looknlook.cart.service.CartService;
+import com.looknlook.looknlook.member.domain.entity.Member;
 import com.looknlook.looknlook.order.domain.request.ReqOrder;
-import com.looknlook.looknlook.order.domain.request.ReqOrderStock;
+import com.looknlook.looknlook.order.domain.response.ResOrder;
 import com.looknlook.looknlook.order.service.OrderService;
-import com.looknlook.looknlook.shop.service.ShopService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,13 +22,25 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
+    private final CartService cartService;
 
     @GetMapping("")
-    public String readOrder(@RequestBody List<ReqOrderStock> orderStocks, Model model)throws Exception{
-
-
-
+    public String readOrderWrite(@RequestBody Long[] cartNoList, Model model)throws Exception{
+        List<ResCart> cartList = cartService.readCartSelectList(cartNoList);
+        model.addAttribute("cartList",cartList);
         return "";
     }
 
+    @PostMapping("")
+    public String createOrder(@RequestBody ReqOrder reqOrder, @AuthenticationPrincipal Member getMember) throws Exception {
+        orderService.createOrder(reqOrder,getMember.getMemNo());
+        return "완료page or 오류page";
+    }
+
+    @GetMapping("/{orderNo}")
+    public String readOrder(@PathVariable("orderNo") Long orderNo, Model model){
+        ResOrder resOrder = orderService.readOrder(orderNo);
+        model.addAttribute("order",resOrder);
+        return "상세";
+    }
 }

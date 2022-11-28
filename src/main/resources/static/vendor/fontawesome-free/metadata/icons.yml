@@ -2067,7 +2067,7 @@ bookmark:
     - '1'
     - 5.0.0
     - 5.10.2
-  label: bookmark
+  label: Bookmark
   search:
     terms:
       - favorite
@@ -7563,7 +7563,7 @@ first-order:
   changes:
     - '4.6'
     - 5.0.0
-  label: First Order
+  label: First Orders
   search:
     terms: []
   styles:
@@ -7573,7 +7573,7 @@ first-order:
 first-order-alt:
   changes:
     - 5.0.12
-  label: Alternate First Order
+  label: Alternate First Orders
   search:
     terms: []
   styles:
@@ -10967,7 +10967,7 @@ jedi-order:
   changes:
     - 5.0.12
     - 5.7.0
-  label: Jedi Order
+  label: Jedi Orders
   search:
     terms:
       - star wars
@@ -17158,7 +17158,7 @@ sort:
   search:
     terms:
       - filter
-      - order
+      - orders
   styles:
     - solid
   unicode: f0dc
@@ -17174,7 +17174,7 @@ sort-alpha-down:
       - alphabetical
       - arrange
       - filter
-      - order
+      - orders
       - sort-alpha-asc
   styles:
     - solid
@@ -17189,7 +17189,7 @@ sort-alpha-down-alt:
       - alphabetical
       - arrange
       - filter
-      - order
+      - orders
       - sort-alpha-asc
   styles:
     - solid
@@ -17206,7 +17206,7 @@ sort-alpha-up:
       - alphabetical
       - arrange
       - filter
-      - order
+      - orders
       - sort-alpha-desc
   styles:
     - solid
@@ -17221,7 +17221,7 @@ sort-alpha-up-alt:
       - alphabetical
       - arrange
       - filter
-      - order
+      - orders
       - sort-alpha-desc
   styles:
     - solid
@@ -17238,7 +17238,7 @@ sort-amount-down:
       - arrange
       - filter
       - number
-      - order
+      - orders
       - sort-amount-asc
   styles:
     - solid
@@ -17252,7 +17252,7 @@ sort-amount-down-alt:
     terms:
       - arrange
       - filter
-      - order
+      - orders
       - sort-amount-asc
   styles:
     - solid
@@ -17268,7 +17268,7 @@ sort-amount-up:
     terms:
       - arrange
       - filter
-      - order
+      - orders
       - sort-amount-desc
   styles:
     - solid
@@ -17282,7 +17282,7 @@ sort-amount-up-alt:
     terms:
       - arrange
       - filter
-      - order
+      - orders
       - sort-amount-desc
   styles:
     - solid
@@ -17300,7 +17300,7 @@ sort-down:
       - arrow
       - descending
       - filter
-      - order
+      - orders
       - sort-desc
   styles:
     - solid
@@ -17317,7 +17317,7 @@ sort-numeric-down:
       - arrange
       - filter
       - numbers
-      - order
+      - orders
       - sort-numeric-asc
   styles:
     - solid
@@ -17332,7 +17332,7 @@ sort-numeric-down-alt:
       - arrange
       - filter
       - numbers
-      - order
+      - orders
       - sort-numeric-asc
   styles:
     - solid
@@ -17349,7 +17349,7 @@ sort-numeric-up:
       - arrange
       - filter
       - numbers
-      - order
+      - orders
       - sort-numeric-desc
   styles:
     - solid
@@ -17364,7 +17364,7 @@ sort-numeric-up-alt:
       - arrange
       - filter
       - numbers
-      - order
+      - orders
       - sort-numeric-desc
   styles:
     - solid
@@ -17382,7 +17382,7 @@ sort-up:
       - arrow
       - ascending
       - filter
-      - order
+      - orders
       - sort-asc
   styles:
     - solid

@@ -1,6 +1,7 @@
 package com.looknlook.looknlook.member.service;
 
 import com.looknlook.looknlook.common.codeEnum.CodeStatus;
+import com.looknlook.looknlook.common.codeEnum.CodeValue;
 import com.looknlook.looknlook.member.repository.MemberRepository;
 import com.looknlook.looknlook.member.domain.RequestDto.ReqMember;
 import com.looknlook.looknlook.member.domain.ResponseDto.ResMember;
@@ -21,7 +22,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public void createMember(ReqMember reqMember) {
+    public Long createMember(ReqMember reqMember) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String memPw = passwordEncoder.encode(reqMember.getMemPw());
 
@@ -29,12 +30,13 @@ public class MemberService {
                 .memId(reqMember.getMemId())
                 .memPw(memPw)
                 .memName(reqMember.getMemName())
-                .memType(reqMember.getMemType())
+                .memType(CodeStatus.getCodeStatusByCode(reqMember.getMemType()))
                 .memStu(CodeStatus.OK)
                 .regDt(LocalDateTime.now())
-                .auth("ROLE_ADMIN")
+                .auth("ROLE_MEMBER")
                 .build();
         memberRepository.save(member);
+        return member.getMemNo();
     }
 
     public List<ResMember> readMemberList() {

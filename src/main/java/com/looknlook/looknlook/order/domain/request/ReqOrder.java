@@ -22,6 +22,6 @@ public class ReqOrder {
 
     private String orderAddrNum;
 
-    private List<OrderStock> orderStocks;
+    private Long[] cartNoArry;
 
 }

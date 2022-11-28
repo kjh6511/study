@@ -6,15 +6,15 @@
 <th:block layout:fragment="content">
     <div class="col-lg-7">
         <div class="card shadow-lg border-0 rounded-lg mt-5">
-            <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
+            <div class="card-header"><h3 class="text-center font-weight-light my-4">회원가입</h3></div>
             <div class="card-body">
                 <form class="registerFrom" action="/register" method="POST">
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <div class="form-floating mb-3 mb-md-0">
+                            <div class="form-floating mb-3 mb-md-0 input-group">
                                 <input class="form-control" id="memId" name="memId" type="text"/>
                                 <label for="memId">ID</label>
-                                <a id="checkMemId" class="btn btn-primary">중복확인</a>
+                                <button id="checkMemId" class="small btn btn-outline-primary" type="button">check</button>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -52,7 +52,7 @@
                 </form>
             </div>
             <div class="card-footer text-center py-3">
-                <div class="small"><a th:href="@{/}">Go to login</a></div>
+                <div class="small"><a th:href="@{/}">로그인 하러가기</a></div>
             </div>
         </div>
     </div>

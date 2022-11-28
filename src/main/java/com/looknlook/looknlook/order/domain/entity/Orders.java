@@ -16,8 +16,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "order")
-public class Order {
+@Table(name = "orders")
+public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,10 +39,12 @@ public class Order {
 
     private String orderAddrNum;
 
+    private int payMoney;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mem_no")
     private Member member;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "orders", fetch = FetchType.LAZY)
     private List<OrderStock> orderStocks;
 }

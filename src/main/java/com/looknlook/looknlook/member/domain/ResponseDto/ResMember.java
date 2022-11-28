@@ -18,7 +18,7 @@ public class ResMember {
 
     private String memName;
 
-    private String memType;
+    private CodeStatus memType;
 
     private CodeStatus memStu;
 

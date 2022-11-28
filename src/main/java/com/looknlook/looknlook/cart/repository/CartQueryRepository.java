@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface CartQueryRepository {
     List<ResCart> findAllByMemNo(Long memNo);
+
+    ResCart findByCartNoWithStock(Long cartNo);
 }

@@ -1,8 +1,7 @@
 package com.looknlook.looknlook.order.domain.entity;
 
-import com.looknlook.looknlook.Item.domain.entity.ItemCategory;
 import com.looknlook.looknlook.Item.domain.entity.Stock;
-import com.looknlook.looknlook.member.domain.entity.Member;
+import com.looknlook.looknlook.reply.domain.entity.Reply;
 import lombok.*;
 
 import javax.persistence.*;
@@ -30,9 +29,10 @@ public class OrderStock {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_no")
-    private Order order;
+    private Orders orders;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "stock_no")
     private Stock stock;
+
 }

@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 @Data
 public class ResCart {
 
+    private Long cartNo;
+
     private Long stockNo;
 
     private String stockNm;
@@ -32,6 +34,7 @@ public class ResCart {
 
     @QueryProjection
     public ResCart(Cart cart) {
+        this.cartNo = cart.getCartNo();
         this.stockNo = cart.getStock().getStockNo();
         this.stockNm = cart.getStock().getStockNm();
         this.stockStu = cart.getStock().getStockStu();
