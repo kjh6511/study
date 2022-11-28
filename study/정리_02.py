@@ -85,7 +85,7 @@ from collections import deque
 def bfs(graph, start, visited):
     queue = deque([start])
     #현재 노드 방문 처리
-    visited[start], True
+    visited[start]= True
     #큐가 빌 때까지 반복
     while queue:
         v = queue.popleft()
