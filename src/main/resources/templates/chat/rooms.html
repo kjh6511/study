@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="layout/default_login_layout">
+<th:block layout:fragment="content">
+
+    <div class="container">
+        <div>
+            <ul th:each="room : ${list}">
+                <li><a th:href="@{/chat/room(roomId=${room.roomId})}">[[${room.name}]]</a></li>
+            </ul>
+        </div>
+    </div>
+    <form th:action="@{/chat/room}" method="post">
+        <input type="text" name="name" class="form-control">
+        <button class="btn btn-secondary">개설하기</button>
+    </form>
+
+</th:block>
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        var roomName = [[${roomName}]];
+    </script>
+    <script th:inline="javascript" th:src="@{/js/rooms.js}"></script>
+</th:block>
+</html>

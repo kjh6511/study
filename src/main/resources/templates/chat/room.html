@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="layout/default_login_layout">
+<th:block layout:fragment="content">
+
+    <div class="container">
+        <div class="col-6">
+            <h1>[[${room.name}]]</h1>
+        </div>
+        <div>
+            <div id="msgArea" class="col"></div>
+            <div class="col-6">
+                <div class="input-group mb-3">
+                    <input type="text" id="msg" class="form-control">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6"></div>
+        <a class="btn btn-outline-primary button-disconnect" th:href="@{/chat/rooms}">나가기</a>
+        <a class="btn btn-outline-primary button-disconnect" th:href="@{/}">로그인</a>
+    </div>
+
+</th:block>
+<th:block layout:fragment="script">
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script th:inline="javascript">
+                var roomName = [[${room.name}]];
+                var roomId = [[${room.roomId}]];
+                var username = [[${#authentication.principal.username}]];
+    </script>
+    <script th:src="@{/js/room.js}"></script>
+</th:block>
+</html>

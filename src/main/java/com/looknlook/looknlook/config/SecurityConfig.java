@@ -22,6 +22,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        //웹소켓 보안 설정
+        http.headers().frameOptions().sameOrigin();
+
 
         //폼 로그인 기증과 베이직 인증 비활성
     /*    http.formLogin().disable()

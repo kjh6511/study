@@ -6,8 +6,10 @@
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
                 <div class="nav">
-
-                    <div class="sb-sidenav-menu-heading">Board</div>
+                    <div class="sb-sidenav-menu-heading">
+                        <a th:href="@{/chat/rooms}"><i class="fa-regular fa-comments"></i></a>
+                    </div>
+                    <div class="sb-sidenav-menu-heading">Board
                     <a class="nav-link" th:href="@{/home}">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Home
