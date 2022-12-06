@@ -1,6 +1,7 @@
 package com.looknlook.looknlook.shop.domain.entity;
 
 import com.looknlook.looknlook.Item.domain.entity.Item;
+import com.looknlook.looknlook.chat.domain.entity.Room;
 import com.looknlook.looknlook.member.domain.entity.Member;
 import com.looknlook.looknlook.shop.domain.RequestDto.ReqShop;
 import lombok.*;

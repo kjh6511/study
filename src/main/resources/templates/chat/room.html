@@ -8,9 +8,31 @@
 
     <div class="container">
         <div class="col-6">
-            <h1>[[${room.name}]]</h1>
+            <h1>[[${room.roomNm}]]</h1>
         </div>
         <div>
+            <div class="col">
+                <div th:each="chat : ${room.chats}">
+                    <div th:if="${chat.member.memNo == #authentication.principal.memNo}">
+                        <div class='col-6'>
+                            <div class='alert alert-secondary'>
+                                <b>[[${chat.member.memName}]]</b>
+                                <b> : </b>
+                                <b>[[${chat.chatCont}]]</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div th:unless="${chat.member.memNo == #authentication.principal.memNo}">
+                        <div class='col-6'>
+                            <div class='alert alert-warning'>
+                                <b>[[${chat.member.memName}]]</b>
+                                <b> : </b>
+                                <b>[[${chat.chatCont}]]</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div id="msgArea" class="col"></div>
             <div class="col-6">
                 <div class="input-group mb-3">
@@ -22,8 +44,7 @@
             </div>
         </div>
         <div class="col-6"></div>
-        <a class="btn btn-outline-primary button-disconnect" th:href="@{/chat/rooms}">나가기</a>
-        <a class="btn btn-outline-primary button-disconnect" th:href="@{/}">로그인</a>
+        <a class="btn btn-outline-primary button-disconnect" th:href="@{/room/list?page=0&size=10}">나가기</a>
     </div>
 
 </th:block>
@@ -31,9 +52,10 @@
     <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <script th:inline="javascript">
-                var roomName = [[${room.name}]];
-                var roomId = [[${room.roomId}]];
+                var roomName = [[${room.roomNm}]];
+                var roomNo = [[${room.roomNo}]];
                 var username = [[${#authentication.principal.username}]];
+                var memNo = [[${#authentication.principal.memNo}]];
     </script>
     <script th:src="@{/js/room.js}"></script>
 </th:block>

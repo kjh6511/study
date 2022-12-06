@@ -10,8 +10,11 @@ $(document).ready(function(){
     stomp.connect({}, function (){
        console.log("STOMP Connection")
 
+       //3. send(path, header, message)로 메세지를 보낼 수 있음
+       stomp.send('/pub/chat/enter', {}, JSON.stringify({roomId: roomId, writer: username}))
+
        //4. subscribe(path, callback)으로 메세지를 받을 수 있음
-       stomp.subscribe("/sub/chat/room/" + roomNo, function (chat) {
+       stomp.subscribe("/sub/chat/room/" + roomId, function (chat) {
            var content = JSON.parse(chat.body);
            var message = content.message;
            var writer = content.writer;
@@ -40,12 +43,12 @@ $(document).ready(function(){
         var msg = document.getElementById("msg");
 
         console.log(username + ":" + msg.value);
-        stomp.send('/pub/chat/message', {}, JSON.stringify({roomNo: roomNo, message: msg.value, writer: username, memNo:memNo}));
+        stomp.send('/pub/chat/message', {}, JSON.stringify({roomId: roomId, message: msg.value, writer: username}));
         msg.value = '';
     });
 
         $("#button-disconnect").on("click", function(e){
-            stomp.send('/pub/chat/end', {}, JSON.stringify({roomNo: roomNo, writer: username}));
+            stomp.send('/pub/chat/end', {}, JSON.stringify({roomId: roomId, writer: username}));
             stomp.disconnect();
             console.log(username + ":" + msg.value + "disconnect");
         });

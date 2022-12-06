@@ -1,6 +1,8 @@
 package com.looknlook.looknlook.chat.controller;
 
 import com.looknlook.looknlook.chat.domain.dto.ChatMessageDto;
+import com.looknlook.looknlook.chat.domain.request.ReqChat;
+import com.looknlook.looknlook.chat.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -10,8 +12,9 @@ import org.springframework.stereotype.Controller;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-public class StomChatController {
+public class StompChatController {
 
+    private final RoomService roomService;
     private final SimpMessagingTemplate template;
 
     //ChatHandler 역할을 함
@@ -33,8 +36,14 @@ public class StomChatController {
     public void message(ChatMessageDto message){
         log.info("2 ->" + message.getWriter() + " : " + message.getMessage());
 
+        //저장
+        ReqChat reqChat = new ReqChat();
+        reqChat.setChatCont(message.getMessage());
+        reqChat.setRoomNo(message.getRoomNo());
+        roomService.createChat(message.getMemNo(), reqChat);
+
         //해당 주소의 webSocket으로 메세지 보내기
-        template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
+        template.convertAndSend("/sub/chat/room/" + message.getRoomNo(), message);
     }
 
     @MessageMapping(value = "/chat/end") //나가기 /pub/chat/end
@@ -44,6 +53,6 @@ public class StomChatController {
         log.info("3 ->" + message.getWriter() + " : " + message.getMessage());
 
         //webSocket으로 메세지 보내기
-        template.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
+        template.convertAndSend("/sub/chat/room/" + message.getRoomNo(), message);
     }
 }
