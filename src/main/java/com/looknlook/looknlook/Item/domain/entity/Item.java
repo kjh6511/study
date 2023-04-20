@@ -33,6 +33,8 @@ public class Item {
 
     private Integer itemAmt;
 
+    private int viewCt;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "shop_no")
     private Shop shop;

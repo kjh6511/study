@@ -21,6 +21,8 @@ public class ResItem {
 
     private Integer itemAmt;
 
+    private int viewCt;
+
     private ResItemCategory itemCategory;
 
     private ResShop shop;
@@ -33,6 +35,7 @@ public class ResItem {
         this.itemStu = item.getItemStu();
         this.itemInfo = item.getItemInfo();
         this.itemAmt = item.getItemAmt();
+        this.viewCt = item.getViewCt();
         this.itemCategory =  new ResItemCategory(item.getItemCategory());
         this.stocks = item.getStocks()
                             .stream().map(ResStock::new)

@@ -1,6 +1,8 @@
 package com.looknlook.looknlook.bookmark.service;
 
+import com.looknlook.looknlook.Item.domain.entity.Item;
 import com.looknlook.looknlook.Item.repository.ItemRepository;
+import com.looknlook.looknlook.board.domain.entity.Board;
 import com.looknlook.looknlook.board.repository.BoardRepository;
 import com.looknlook.looknlook.bookmark.domain.entity.Bookmark;
 import com.looknlook.looknlook.bookmark.domain.request.ReqBookmark;
@@ -32,23 +34,33 @@ public class BookmarkService {
     public void createBookmark(Long memNo, ReqBookmark reqBookmark)throws Exception{
         Member member = memberRepository.findById(memNo)
                 .orElseThrow(NullPointerException::new);
+        Bookmark bookmark = Bookmark.builder()
+                   .bmType(reqBookmark.getBmType())
+                   .member(member)
+                   .build();
 
         if(reqBookmark.getBmType().equals("04001")){//shop
             Shop shop = shopRepository.findById(reqBookmark.getShopNo())
                                     .orElseThrow(NullPointerException::new);
-
+            bookmark.setShop(shop);
+        }else if(reqBookmark.getBmType().equals("04002")){ //item
+            Item item = itemRepository.findById(reqBookmark.getItemNo())
+                    .orElseThrow(NullPointerException::new);
+            bookmark.setItem(item);
+        }else if(reqBookmark.getBmType().equals("04003")){ //board
+            Board board = boardRepository.findById(reqBookmark.getBoardNo())
+                    .orElseThrow(NullPointerException::new);
+            bookmark.setBoard(board);
         }
-
-        Bookmark bookmark = Bookmark.builder()
-                .bmType(reqBookmark.getBmType())
-
-                .member(member)
-                .build();
         bookmarkRepository.save(bookmark);
     }
 
     @Transactional
     public Page<ResBookmarkItem> readBookmarkItemListPage(Long memNo, ReqBookmarkSearch search, Pageable pageable)throws Exception{
            return bookmarkRepository.findAllByMemNoWithItemPage(memNo,search,pageable);
+    }
+
+    public void deleteBookmark(Long bmNo)throws Exception{
+         bookmarkRepository.deleteById(bmNo);
     }
 }
