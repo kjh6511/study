@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title id="title">Login</title>
+
+    <script th:src="@{/js/register.js}"></script>
+</head>
+
+<body>
+<div class="register-wrap">
+    <div class="registerInfo">
+        <form class="registerFrom" action="/register" method="POST">
+            <div class="">
+                <div class="">
+                    <input class="" id="userId" name="userId" type="text"/>
+                    <label for="userId">ID</label>
+                    <button id="checkUserId" class="" type="button">중복검사</button>
+                </div>
+            </div>
+            <div class="">
+                <div class="form-floating">
+                    <input class="form-control" id="userNm" name="userNm" type="text"/>
+                    <label for="userNm">Name</label>
+                </div>
+            </div>
+            <div class="">
+                <div class="form-floating">
+                    <input class="form-control" id="userPw" name="userPw" type="password"/>
+                    <label for="userPw">Password</label>
+                </div>
+            </div>
+            <div class="">
+                <div class="">
+                    <button class="" type="submit">Create Account</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="">
+        <div class="small"><a th:href="@{/login}">로그인 하러가기</a></div>
+    </div>
+</div>
+</body>
+</html>

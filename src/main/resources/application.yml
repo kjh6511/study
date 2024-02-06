@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/reviewer?serverTimezone=Asia/Seoul
+    username: test
+    password: test1234
+  jpa:
+    properties:
+      hibernate.default_batch_fetch_size: 1000
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+
+  loggin:
+    level:
+      org:
+        hibernate:
+          type:
+            descriptor:
+              sql: trace
