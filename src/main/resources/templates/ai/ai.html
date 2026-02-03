@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>식단</title>
+  <meta charset="UTF-8">
+  <script th:src="@{/js/ai.js}"></script>
+</head>
+
+<style>
+.spinner {
+  margin: 0 auto 10px;
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ccc;
+  border-top: 4px solid #4CAF50;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+
+<body>
+<div id="ai-meal-root">
+  <form id="stepForm">
+    <div class="step active">
+      <label>성별</label>
+      <select name="gender" required>
+        <option value="male">남자</option>
+        <option value="female">여자</option>
+      </select>
+    </div>
+    <div class="step">
+      <label>나이</label>
+      <input type="number" name="age" required min="10" max="100" />
+    </div>
+    <div class="step">
+      <label>체중(kg)</label>
+      <input type="number" name="weight" required min="30" max="200" />
+    </div>
+    <div class="step">
+      <label>키(cm)</label>
+      <input type="number" name="height" required min="50" max="300" />
+    </div>
+    <div class="step">
+      <label>목표</label>
+      <select name="goal" required>
+        <option value="lose">체중 감량</option>
+        <option value="maintain">유지</option>
+        <option value="gain">체중 증가</option>
+      </select>
+    </div>
+    <div class="step">
+      <label>알러지/피할 음식 (콤마로 구분)</label>
+      <input type="text" name="allergy" placeholder="ex: 우유, 견과류" />
+    </div>
+    <div class="step">
+      <label>좋아하는 음식</label>
+      <input type="text" name="like" placeholder="ex: 닭가슴살, 연어" />
+    </div>
+    <div class="step">
+      <button type="button" onclick="submitAIMeal()">식단 추천 받기</button>
+    </div>
+    <div id="loading" style="display:none; margin-top: 20px; text-align: center;">
+      <div class="spinner"></div>
+      <p>식단을 추천받는 중이에요... 🍽️</p>
+    </div>
+  </form>
+  <div id="aiResult" style="margin-top: 30px;">
+
+  </div>
+</div>
+</body>
+</html>

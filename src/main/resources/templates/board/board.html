@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>게시판</h2>
+
+<form method="get" th:action="@{/boards}">
+  <input type="text" name="keyword" th:value="${condition.keyword}" placeholder="게시판 제목 검색">
+  <button type="submit">검색</button>
+</form>
+
+<hr>
+
+<table border="1">
+  <thead>
+  <tr>
+    <th>게시판번호</th>
+    <th>제목</th>
+    <th>작성자</th>
+    <th>등록일</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="board : ${boardPage.content}">
+    <td th:text="${board.brdNo}">ORD202504090001</td>
+    <td th:text="${board.brdTitle}">홍길동</td>
+    <td th:text="${board.memNm}">카드</td>
+    <td th:text="${#temporals.format(board.brdRegDt, 'yyyy-MM-dd HH:mm')}">2025-04-09 14:22</td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- 페이징 -->
+<div>
+    <span th:if="${boardPage.hasPrevious()}">
+        <a th:href="@{|/boards?page=${boardPage.number - 1}|}">이전</a>
+    </span>
+  <span th:each="i : ${#numbers.sequence(0, boardPage.totalPages - 1)}">
+        <a th:href="@{|/boards?page=${i}|}"
+           th:text="${i + 1}"
+           th:class="${i == boardPage.number ? 'current' : ''}">1</a>
+    </span>
+  <span th:if="${boardPage.hasNext()}">
+        <a th:href="@{|/boards?page=${boardPage.number + 1}|}">다음</a>
+    </span>
+</div>
+
+</body>
+</html>

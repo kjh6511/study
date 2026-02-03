@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>카테고리 등록/수정</title>
+</head>
+<body>
+<h2 th:text="${category.cateNo != null} ? '카테고리 수정' : '카테고리 등록'"></h2>
+<form th:action="${category.cateNo != null} ? @{/categories/edit} : @{/categories}" method="post">
+  <input type="hidden" name="cateNo" th:value="${category.cateNo}" />
+
+  <label>카테고리 이름</label><br>
+  <input type="text" name="cateNm" th:value="${category.cateNm}" required><br><br>
+
+  <label>레벨</label><br>
+  <select name="cateLv" id="cateLv" required>
+    <option value="1" th:selected="${category.cateLv == 1}">1</option>
+    <option value="2" th:selected="${category.cateLv == 2}">2</option>
+    <option value="3" th:selected="${category.cateLv == 3}">3</option>
+  </select><br><br>
+
+  <label>상위 카테고리 (Lv 1은 비활성)</label><br>
+  <select name="cateTopNo" id="cateTopNo">
+    <option value="">-- 선택하세요 --</option>
+    <option th:each="cat : ${lv1Categories}"
+            th:value="${cat.cateNo}"
+            th:text="${cat.cateNm}"
+            th:selected="${category.cateTopNo == cat.cateNo}">
+    </option>
+  </select><br><br>
+
+  <label>상태</label><br>
+  <select name="cateStat">
+    <option value="03001" th:selected="${category.cateStat == '03001'}">사용</option>
+    <option value="03002" th:selected="${category.cateStat == '03002'}">미사용</option>
+    <option value="03003" th:selected="${category.cateStat == '03003'}">삭제</option>
+  </select><br><br>
+
+  <button type="submit" th:text="${category.cateNo != null} ? '수정' : '등록'"></button>
+  <a th:href="@{/categories}">← 목록으로</a>
+</form>
+
+<script>
+    const lvSelect = document.getElementById('cateLv');
+    const topSelect = document.getElementById('cateTopNo');
+
+    function toggleTopSelect() {
+        const lv = parseInt(lvSelect.value);
+        if (lv === 1) {
+            topSelect.disabled = true;
+            topSelect.value = '';
+        } else {
+            topSelect.disabled = false;
+        }
+    }
+
+    toggleTopSelect();
+    lvSelect.addEventListener('change', toggleTopSelect);
+</script>
+
+</body>
+</html>

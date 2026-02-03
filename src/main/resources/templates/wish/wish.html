@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>좋아요 목록</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+<h2>💖 좋아요한 음식</h2>
+
+<table border="1">
+  <thead>
+  <tr>
+    <th>음식명</th>
+    <th>가게명</th>
+    <th>정보</th>
+    <th>가격</th>
+    <th>등록일</th>
+    <th>삭제</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="wish : ${wishList}">
+    <td th:text="${wish.mealNm}">김치찌개</td>
+    <td th:text="${wish.shopNm}">한식당</td>
+    <td th:text="${wish.mealInfo}">맛있는 김치찌개</td>
+    <td th:text="|₩${wish.mealPri}|">10000</td>
+    <td th:text="${#temporals.format(wish.wishRegDt, 'yyyy-MM-dd HH:mm')}">2025-04-10</td>
+    <td>
+      <form th:action="@{/wishes/delete}" method="post">
+        <input type="hidden" name="wishNo" th:value="${wish.wishNo}" />
+        <button type="submit">삭제</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<p><a href="/" style="text-decoration: none;">🏠 메인으로 돌아가기</a></p>
+
+</body>
+</html>

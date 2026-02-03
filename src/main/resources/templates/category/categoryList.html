@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>카테고리 목록</title>
+</head>
+<body>
+<h2>카테고리 목록</h2>
+
+<a th:href="@{/categories/new}">+ 새 카테고리 등록</a>
+
+<table border="1">
+  <thead>
+  <tr>
+    <th>번호</th>
+    <th>이름</th>
+    <th>레벨</th>
+    <th>상태</th>
+    <th>상위 카테고리</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="category : ${categories}">
+    <td>
+      <a th:href="@{/categories/{id}(id=${category.cateNo})}"
+         th:text="${category.cateNo}"></a>
+    </td>
+    <td th:text="${category.cateNm}"></td>
+    <td th:text="${category.cateLv}"></td>
+    <td th:text="${category.cateStat}"></td>
+    <td th:text="${category.cateTopNm} ?: '-'"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

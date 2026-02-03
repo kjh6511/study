@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Meal 목록</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script th:src="@{/js/meal-filter.js}"></script>
+</head>
+<body>
+<h2>🍽️ Meal 목록</h2>
+
+<form method="get" th:action="@{/meals}">
+    <input type="text" name="keyword" th:value="${condition.keyword}" placeholder="이름 또는 설명 검색">
+    <button type="submit">검색</button>
+</form>
+
+<hr>
+
+<h4>카테고리 필터</h4>
+<div>
+    <!-- Level 1 카테고리 버튼 -->
+    <div id="level1-buttons">
+        <button
+                type="button"
+                th:each="cate1 : ${lv1Categories}"
+                th:text="${cate1.cateNm}"
+                th:attr="data-cate-no=${cate1.cateNo}"
+                onclick="loadLevel2(this)">
+        </button>
+    </div>
+
+    <!-- Level 2 동적 버튼 -->
+    <div id="level2-buttons"></div>
+</div>
+
+<hr>
+
+<!-- Meal 목록 -->
+<table border="1">
+    <thead>
+    <tr>
+        <th>번호</th>
+        <th>이름</th>
+        <th>좋아요</th>
+        <th>설명</th>
+        <th>상태</th>
+        <th>가격</th>
+        <th>카테고리</th>
+        <th>가게</th>
+        <th>등록일</th>
+        <th>수정</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="meal : ${mealPage.content}">
+        <td th:text="${meal.mealNo}">1</td>
+        <td>
+            <a th:href="@{'/meals/' + ${meal.mealNo}}" th:text="${meal.mealNm}">햄버거</a>
+        </td>
+        <td>
+            <form th:if="${meal.wished}" th:action="@{/wishes/delete}" method="post" style="display:inline;">
+                <input type="hidden" name="mealNo" th:value="${meal.mealNo}" />
+                <button type="submit" style="background:none; border:none; font-size:1.3rem; cursor:pointer;">❤️</button>
+            </form>
+            <form th:unless="${meal.wished}" th:action="@{/wishes/add}" method="post" style="display:inline;">
+                <input type="hidden" name="mealNo" th:value="${meal.mealNo}" />
+                <button type="submit" style="background:none; border:none; font-size:1.3rem; cursor:pointer;">🤍</button>
+            </form>
+        </td>
+        <td th:text="${meal.mealInfo}">맛있는 버거</td>
+        <td th:text="${meal.mealPri}"></td>
+        <td th:text="${meal.mealStat}">사용</td>
+        <td th:text="${meal.category.cateNm}">한식</td>
+        <td th:text="${meal.shop.shopNm}">롯데리아</td>
+        <td th:text="${#temporals.format(meal.mealRegDt, 'yyyy-MM-dd')}">2025-04-01</td>
+        <td>
+            <a th:href="@{'/meals/form?mealNo=' + ${meal.mealNo}}">수정</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- 페이징 -->
+<div>
+    <span th:if="${mealPage.hasPrevious()}">
+        <a th:href="@{|/meals?page=${mealPage.number - 1}|}">이전</a>
+    </span>
+    <span th:each="i : ${#numbers.sequence(0, mealPage.totalPages - 1)}">
+        <a th:href="@{|/meals?page=${i}|}"
+           th:text="${i + 1}"
+           th:class="${i == mealPage.number ? 'current' : ''}">1</a>
+    </span>
+    <span th:if="${mealPage.hasNext()}">
+        <a th:href="@{|/meals?page=${mealPage.number + 1}|}">다음</a>
+    </span>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+package com.mealgo.common.converter;
+
+import com.mealgo.common.code.MealEnum;
+import com.mealgo.common.utils.CodeConverter;
+import jakarta.persistence.Converter;
+
+@Converter(autoApply = false)
+public class MealConverter extends CodeConverter<MealEnum> {
+    public MealConverter(){
+        super(MealEnum.class);
+    }
+}

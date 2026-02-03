@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:action="@{/boards}" method="post" th:object="${RequestBoard}">
+    <label>게시판 종류</label>
+    <select name="brdType">
+        <option value="10001">1:1문의</option>
+        <option value="10002">문의사항</option>
+        <option value="10003">설명서</option>
+        <option value="10004">자유게시판</option>
+    </select>
+
+    <label>제목</label>
+    <input type="text" name="brdTitle" required/>
+
+    <label>내용</label>
+    <textarea name="brdContent" required></textarea>
+
+    <button type="submit">등록</button>
+</form>
+
+
+</body>
+</html>

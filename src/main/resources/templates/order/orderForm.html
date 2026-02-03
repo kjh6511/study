@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>🧾 주문서</title>
+  <meta charset="UTF-8">
+</head>
+  <body>
+    <h2>🧾 주문 확인</h2>
+
+    <form th:action="@{/orders/create}" method="post">
+      <input type="hidden" name="orderAm" th:value="${totalAmount}">
+      <input type="hidden" name="orderShip" th:value="${shippingFee}">
+
+      <label>결제 방법 선택</label>
+      <select name="orderMet">
+        <option th:each="method : ${payEnumList}"
+                th:value="${method.code}"
+                th:text="${method.value}">카드</option>
+      </select>
+
+      <div th:each="cart : ${cartList}">
+        <input type="hidden" name="cartList" th:value="${cart.cartNo}">
+        <p th:text="|${cart.meal.mealNm} - ${cart.cartCnt}개|">치킨 - 2개</p>
+        <p>금액 : ₩<span th:text = "${cart.meal.mealPri}"></span></p>
+      </div>
+
+      <p>주문 금액: ₩<span th:text="${totalAmount}">0</span></p>
+      <p>배송비: ₩<span th:text="${shippingFee}">0</span><span>30000원이상 무료 배송</span></p>
+      <p>총 결제금액: ₩<span th:text="${totalAmount + shippingFee}">0</span></p>
+
+      <button type="submit">주문하기</button>
+    </form>
+
+  </body>
+</html>

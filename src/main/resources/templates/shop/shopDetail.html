@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}"
+      th:with="listPath='/shops'">
+<head>
+    <title layout:fragment="head">Shop 상세</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <h2>Shop 상세 / 수정</h2>
+    <form id="shopForm">
+        <input type="hidden" name="shopNo" th:value="${shop.shopNo}" id="shopNo">
+
+        <label>Shop 이름</label><br>
+        <span class="view-text" id="viewNm" th:text="${shop.shopNm}"></span>
+        <input class="editable" type="text" name="shopNm" th:value="${shop.shopNm}" id="shopNm" style="display:none;"><br><br>
+
+        <label>Shop ID</label><br>
+        <span class="view-text" id="viewId" th:text="${shop.shopId}"></span>
+        <input class="editable" type="text" name="shopId" th:value="${shop.shopId}" id="shopId" style="display:none;"><br><br>
+
+        <label>Shop 정보</label><br>
+        <span class="view-text" id="viewInfo" th:text="${shop.shopInfo}"></span>
+        <textarea class="editable" name="shopInfo" id="shopInfo" style="display:none;" th:text="${shop.shopInfo}"></textarea><br><br>
+
+        <label>Shop 전화번호</label><br>
+        <span class="view-text" id="viewTel" th:text="${shop.shopTel}"></span>
+        <input class="editable" type="text" name="shopTel" th:value="${shop.shopTel}" id="shopTel" style="display:none;"><br><br>
+
+        <label>Shop 이미지 URL</label><br>
+        <span class="view-text" id="viewImg" th:text="${shop.shopImg}"></span>
+        <input class="editable" type="text" name="shopImg" th:value="${shop.shopImg}" id="shopImg" style="display:none;"><br><br>
+
+        <label>Shop 상태</label><br>
+        <span class="view-text" id="viewStat" th:text="${shop.shopStat.value}"></span>
+        <select name="shopStat" id="shopStat" class="editable" style="display:none;">
+            <option th:each="status : ${shopStatusList}"
+                    th:value="${status.code}"
+                    th:text="${status.value}"
+                    th:selected="${shop.shopStat.code == status.code}">
+            </option>
+        </select><br><br>
+
+        <button type="button" id="edit-btn" onclick="enableEditMode()">수정</button>
+        <button type="submit" id="save-btn" style="display:none;">저장</button>
+        <button type="button" id="cancel-btn" onclick="cancelEdit()" style="display:none;">취소</button>
+    </form>
+</section>
+
+<script th:src="@{/js/shop-edit.js}"></script>
+</body>
+</html>

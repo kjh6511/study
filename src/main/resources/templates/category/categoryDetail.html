@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>카테고리 상세</title>
+</head>
+<body>
+<h2>카테고리 상세</h2>
+
+<ul>
+  <li><strong>번호:</strong> <span th:text="${category.cateNo}"></span></li>
+  <li><strong>이름:</strong> <span th:text="${category.cateNm}"></span></li>
+  <li><strong>레벨:</strong> <span th:text="${category.cateLv}"></span></li>
+  <li><strong>상태:</strong> <span th:text="${category.cateStat}"></span></li>
+  <li><strong>상위 카테고리:</strong> <span th:text="${category.cateTopNm} ?: '-'"></span></li>
+  <li><strong>등록일:</strong> <span th:text="${#temporals.format(category.cateRegDt, 'yyyy-MM-dd HH:mm')}"></span></li>
+  <li><strong>수정일:</strong> <span th:text="${#temporals.format(category.cateUpDt, 'yyyy-MM-dd HH:mm')}"></span></li>
+</ul>
+
+<a th:href="@{/categories/{id}/edit(id=${category.cateNo})}">수정하기</a>
+&nbsp;|&nbsp;
+<a th:href="@{/categories}">← 목록으로</a>
+</body>
+</html>

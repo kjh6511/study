@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>장바구니</title>
+    <meta charset="UTF-8">
+    <script th:src="@{/js/cart.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<h2>🛒 장바구니</h2>
+
+<form id="cartDeleteForm" th:action="@{/carts/delete}" method="post">
+    <table border="1">
+        <thead>
+        <tr>
+            <th><input type="checkbox" id="checkAll"></th>
+            <th>상품</th>
+            <th>가격</th>
+            <th>수량</th>
+            <th>합계</th>
+            <th>상태</th>
+            <th>삭제</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cart : ${cartList}">
+            <td><input type="checkbox" name="selectedCartIds" th:value="${cart.cartNo}"></td>
+            <td th:text="${cart.meal.mealNm}">치킨</td>
+            <td>₩<span th:text="${cart.meal.mealPri}">10000</span></td>
+            <td>
+                <button type="button" class="btn-minus" th:data-id="${cart.cartNo}">-</button>
+                <span th:text="${cart.cartCnt}" th:attr="data-cart-no=${cart.cartNo}">1</span>
+                <button type="button" class="btn-plus" th:data-id="${cart.cartNo}">+</button>
+            </td>
+            <td>₩<span th:text="${cart.meal.mealPri * cart.cartCnt}">10000</span></td>
+            <td th:text="${cart.cartStat.value}">담기</td>
+            <td>
+                <button type="submit"
+                        name="cartNo"
+                        th:value="${cart.cartNo}"
+                        formaction="/carts/delete"
+                        formmethod="post">
+                    삭제
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <button type="submit">선택 삭제</button>
+</form>
+<br>
+<form id="cartOrderForm" th:action="@{/orders/form}" method="get">
+    <button type="button" onclick="submitOrderForm()">선택 항목 주문하기</button>
+</form>
+</body>
+</html>

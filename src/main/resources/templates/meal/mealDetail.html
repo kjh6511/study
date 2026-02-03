@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <title layout:fragment="head">Meal 상세</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <h2>Meal 상세 정보</h2>
+
+    <p><strong>이름:</strong> <span th:text="${meal.mealNm}"></span></p>
+    <p><strong>설명:</strong> <span th:text="${meal.mealInfo}"></span></p>
+    <p><strong>가격:</strong> <span th:text="${meal.mealPri}"></span></p>
+    <p><strong>상태:</strong> <span th:text="${meal.mealStat}"></span></p>
+    <p><strong>카테고리:</strong> <span th:text="${meal.category.cateNm}"></span></p>
+    <p><strong>Shop:</strong> <span th:text="${meal.shop.shopNm}"></span></p>
+    <p><strong>등록일:</strong> <span th:text="${#temporals.format(meal.mealRegDt, 'yyyy-MM-dd HH:mm')}"></span></p>
+    <p><strong>수정일:</strong> <span th:text="${#temporals.format(meal.mealUpDt, 'yyyy-MM-dd HH:mm')}"></span></p>
+
+    <form th:action="@{/carts/add}" method="post">
+        <input type="hidden" name="mealNo" th:value="${meal.mealNo}" />
+        <input type="number" name="cartCnt" value="1" min="1" />
+        <button type="submit">장바구니 담기</button>
+    </form>
+
+    <a th:href="@{/meals}">목록으로</a>
+    <a th:href="@{'/meals/form?mealNo=' + ${meal.mealNo}}">수정</a>
+</section>
+</body>
+</html>

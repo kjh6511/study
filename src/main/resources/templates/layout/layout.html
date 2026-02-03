@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:replace="${title} ?: '기본 제목'">My App</title>
+  <th:block th:replace="~{::section/@head}"></th:block>
+</head>
+<body>
+
+<!-- layout 내부 콘텐츠 영역 -->
+<main th:replace="~{::section/@content}"></main>
+
+</body>
+</html>

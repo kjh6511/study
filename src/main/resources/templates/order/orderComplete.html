@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>주문 완료</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+<h2>✅ 주문이 완료되었습니다!</h2>
+
+<p th:if="${order.orderNum != null}" th:text="|주문번호: ${order.orderNum}|">주문번호: 123</p>
+<p th:text="|주문일시: ${#temporals.format(order.orderRegDt, 'yyyy-MM-dd HH:mm')}|">2025-04-07 12:34</p>
+<p th:text="|결제금액: ₩${order.orderAm + order.orderShip}|">₩33000</p>
+
+<h3>🧾 주문 목록</h3>
+<table border="1">
+  <thead>
+  <tr>
+    <th>상품명</th>
+    <th>수량</th>
+    <th>가격</th>
+    <th>합계</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="cart : ${order.carts}">
+    <td th:text="${cart.meal.mealNm}">치킨</td>
+    <td th:text="${cart.cartCnt}">2</td>
+    <td th:text="|₩${cart.meal.mealPri}|">₩10000</td>
+    <td th:text="|₩${cart.meal.mealPri * cart.cartCnt}|">₩20000</td>
+
+  </tr>
+  </tbody>
+</table>
+
+<p th:if="${order.orderShip > 0}" th:text="|배송비: ₩${order.orderShip}|">배송비: ₩3000</p>
+
+<p style="margin-top:20px;"><a href="/" style="text-decoration: none;">🏠 메인으로 돌아가기</a></p>
+</body>
+</html>

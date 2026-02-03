@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Meal 등록/수정</title>
+    <meta charset="UTF-8">
+    <script>
+      window.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("lv1").addEventListener("change", function() {
+          const parentId = this.value;
+          const lv2 = document.getElementById("lv2");
+
+          // 초기화
+          lv2.innerHTML = "<option value=''>불러오는 중...</option>";
+
+          if (!parentId) {
+            lv2.innerHTML = "<option value=''>Lv1 먼저 선택해주세요</option>";
+            return;
+          }
+
+          fetch(`/categories/children?parentNo=${parentId}`)
+            .then(res => res.json())
+            .then(data => {
+              lv2.innerHTML = "<option value=''>선택</option>";
+              data.forEach(c => {
+                const opt = document.createElement("option");
+                opt.value = c.cateNo;
+                opt.textContent = c.cateNm;
+                lv2.appendChild(opt);
+              });
+            })
+            .catch(() => {
+              lv2.innerHTML = "<option value=''>불러오기 실패</option>";
+            });
+        });
+      });
+    </script>
+</head>
+<body>
+<h2>Meal 등록/수정</h2>
+
+<h2 th:text="${meal.mealNo != null} ? '수정' : '등록'"></h2>
+<form th:action="${meal.mealNo != null} ? @{/meals/edit} : @{/meals/new}" method="post">
+
+    <input type="hidden" name="mealNo" th:value="${meal.mealNo}">
+
+    <label>Meal 이름</label><br>
+    <input type="text" name="mealNm" th:value="${meal.mealNm}"><br><br>
+
+    <label>Meal 정보</label><br>
+    <input type="text" name="mealInfo" th:value="${meal.mealInfo}"><br><br>
+
+    <label>Meal 가격</label><br>
+    <input type="text" name="mealPri" th:value="${meal.mealPri}"><br><br>
+
+    <label>Meal 상태</label><br>
+    <select name="mealStat">
+        <option th:each="status : ${mealStatusList}"
+                th:value="${status.code}"
+                th:text="${status.value}"
+                th:selected="${meal.mealStat != null and meal.mealStat.code == status.code}">
+        </option>
+    </select><br><br>
+
+    <select id="lv1" name="cateLv1">
+        <option value="">선택</option>
+        <option th:each="cate : ${lv1Categories}"
+                th:value="${cate.cateNo}"
+                th:text="${cate.cateNm}"
+                th:selected="${meal.category != null and cate.cateNo == meal.category.cateTopNo}">
+        </option>
+    </select>
+
+    <select id="lv2" name="cateNo">
+        <option value="">Lv1 선택 후 표시됩니다</option>
+        <option th:each="cate : ${lv2Categories}"
+                th:value="${cate.cateNo}"
+                th:text="${cate.cateNm}"
+                th:selected="${meal.category != null and cate.cateNo == meal.category.cateNo}">
+        </option>
+    </select>
+
+    <br><br>
+
+    <label>Shop</label><br>
+    <select name="shopNo">
+        <option value="">상점을 선택하세요</option>
+        <option th:each="shop : ${shopList}"
+                th:value="${shop.shopNo}"
+                th:text="${shop.shopNm}"
+                th:selected="${meal.shop != null and meal.shop.shopNo == shop.shopNo}">
+        </option>
+    </select>
+    <br><br>
+
+    <button type="submit">저장</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FreshFood - 메뉴</title>
+  <!-- sb bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+  <link th:href="@{/css/styles.css}" rel="stylesheet" />
+  <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+  <script th:src="@{/js/datatables-simple-demo.js}"></script>
+
+  <!-- Bootstrap core JavaScript-->
+  <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+  <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+  <style>
+        body {
+            background-color: #f8fdf8;
+        }
+        .navbar {
+            background-color: #fff;
+            border-bottom: 3px solid #2d6a4f;
+        }
+        .navbar-brand {
+            color: #2d6a4f;
+        }
+        .navbar .nav-link {
+            color: #2d6a4f;
+            font-weight: 500;
+            position: relative;
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+        }
+        .navbar .nav-link:hover,
+        .navbar .nav-link.active {
+            font-weight: 700;
+            color: #2d6a4f;
+        }
+        .navbar .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 3px;
+            background-color: #2d6a4f;
+            transition: width 0.3s ease;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        .navbar .nav-link:hover::after,
+        .navbar .nav-link.active::after {
+            width: 100%;
+        }
+        footer {
+            background-color: #2d6a4f;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+<!-- 네비게이션 바 -->
+<nav class="navbar navbar-expand-lg sticky-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">FreshFood</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">홈</a></li>
+        <li class="nav-item"><a class="nav-link active" href="menu.html">메뉴</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">구독하기</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">문의</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- 메뉴 페이지 내용 -->
+<main class="flex-grow-1">
+  <form method="get" th:action="@{/shops}">
+    <input type="text" name="keyword" th:value="${condition.keyword}" placeholder="상점 이름">
+    <button type="submit">검색</button>
+  </form>
+  <table border="1">
+    <thead>
+    <tr>
+      <th>번호</th>
+      <th>id</th>
+      <th>name</th>
+      <th>state</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="shop: ${shopPage.content}">
+      <td>
+        <a th:href="@{'/shops/' + ${shop.shopNo}}" th:text="${shop.shopNm}"></a>
+      </td>
+      <td th:text="${shop.shopId}"></td>
+      <td th:text="${shop.shopInfo}"></td>
+      <td th:text="${shop.shopStat}"></td>
+    </tr>
+    </tbody>
+  </table>
+  <div>
+    <a th:href="@{/shops(sort='shopNm,asc', keyword=${condition.keyword})}">이름순</a>
+    <a th:href="@{/shops(sort='shopRegDt,desc', keyword=${condition.keyword})}">최신순</a>
+
+    <ul class="pagination">
+      <li th:each="i : ${#numbers.sequence(0, shopPage.totalPages - 1)}">
+        <a th:href="@{/shops(page=${i}, size=${shopPage.size},
+          keyword=${condition.keyword},
+          sort=${param.sort}
+      )}"
+           th:text="${i + 1}"
+           th:classappend="${shopPage.number == i} ? 'active'">
+        </a>
+      </li>
+    </ul>
+    <p th:text="'총 ' + ${shopPage.totalElements} + '건의 결과가 있습니다.'"></p>
+    <p th:text="'총 ' + ${shopPage.totalPages} + ' 페이지'"></p>
+  </div>
+
+
+  <section class="container py-5">
+    <h1 class="text-center mb-5" style="color: #2d6a4f;">FreshFood 메뉴</h1>
+    <div class="row g-4">
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="" class="card-img-top" alt="피자">
+          <div class="card-body">
+            <h5 class="card-title">마르게리타 피자</h5>
+            <p class="card-text">신선한 토마토와 바질이 어우러진 전통 피자.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="" class="card-img-top" alt="버거">
+          <div class="card-body">
+            <h5 class="card-title">클래식 버거</h5>
+            <p class="card-text">직접 만든 패티와 신선한 재료로 완성한 수제 버거.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="" class="card-img-top" alt="누들">
+          <div class="card-body">
+            <h5 class="card-title">아시아 누들</h5>
+            <p class="card-text">풍미 가득한 특제 소스와 면발의 조화.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 푸터 -->
+<footer>
+  <p>&copy; 2025 FreshFood. 모든 권리 보유.</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

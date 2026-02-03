@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>주문 목록</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<h2>📦 주문 목록</h2>
+
+<form method="get" th:action="@{/orders}">
+  <input type="text" name="keyword" th:value="${condition.keyword}" placeholder="주문자 이름 또는 주문번호 검색">
+  <button type="submit">검색</button>
+</form>
+
+<hr>
+
+<table border="1">
+  <thead>
+  <tr>
+    <th>주문번호</th>
+    <th>회원명</th>
+    <th>결제금액</th>
+    <th>결제방법</th>
+    <th>주문상태</th>
+    <th>주문일시</th>
+    <th>상세보기</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="order : ${orderPage.content}">
+    <td th:text="${order.orderNum}">ORD202504090001</td>
+    <td th:text="${order.memberName}">홍길동</td>
+    <td th:text="|₩${order.orderAm + order.orderShip}|">₩33000</td>
+    <td th:text="${order.orderMet}">카드</td>
+    <td th:text="${order.orderStat}">구매확인</td>
+    <td th:text="${#temporals.format(order.orderRegDt, 'yyyy-MM-dd HH:mm')}">2025-04-09 14:22</td>
+    <td><a th:href="@{'/orders/complete?orderNo=' + ${order.orderNo}}">상세</a></td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- 페이징 -->
+<div>
+    <span th:if="${orderPage.hasPrevious()}">
+        <a th:href="@{|/orders?page=${orderPage.number - 1}|}">이전</a>
+    </span>
+  <span th:each="i : ${#numbers.sequence(0, orderPage.totalPages - 1)}">
+        <a th:href="@{|/orders?page=${i}|}"
+           th:text="${i + 1}"
+           th:class="${i == orderPage.number ? 'current' : ''}">1</a>
+    </span>
+  <span th:if="${orderPage.hasNext()}">
+        <a th:href="@{|/orders?page=${orderPage.number + 1}|}">다음</a>
+    </span>
+</div>
+
+</body>
+</html>
